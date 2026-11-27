@@ -1,0 +1,66 @@
+{
+    "cross_validation": {
+        "Persistence": {
+            "MAE": 30.263117870722432,
+            "RMSE": 72.9537884898742
+        },
+        "Original XGBoost": {
+            "MAE": 32.69058860077151,
+            "RMSE": 66.30493301473568
+        },
+        "Optimized XGBoost": {
+            "MAE": 26.966981255128808,
+            "RMSE": 65.99069134041717
+        }
+    },
+    "test_metrics": {
+        "Persistence": {
+            "MAE": 26.650620724600962,
+            "RMSE": 66.43763970519394,
+            "Precision": 0.7690447400241838,
+            "Recall": 0.7690447400241838,
+            "F1": 0.7690447400241838,
+            "TP": 636,
+            "TN": 2929,
+            "FP": 191,
+            "FN": 191
+        },
+        "Original XGBoost": {
+            "MAE": 38.65136766107529,
+            "RMSE": 65.87645181692015,
+            "Precision": 0.46241050119331745,
+            "Recall": 0.9371221281741233,
+            "F1": 0.619256891729924,
+            "TP": 775,
+            "TN": 2219,
+            "FP": 901,
+            "FN": 52
+        },
+        "Optimized XGBoost": {
+            "MAE": 23.080117420151108,
+            "RMSE": 59.09479373747648,
+            "Precision": 0.7298728813559322,
+            "Recall": 0.8331318016928658,
+            "F1": 0.7780914737436476,
+            "TP": 689,
+            "TN": 2865,
+            "FP": 255,
+            "FN": 138
+        }
+    },
+    "eco_threshold_wh": 100.0,
+    "tuning_time_seconds": 12.446673166006804,
+    "refit_time_seconds": 0.15781831741333008,
+    "best_parameters": {
+        "subsample": 0.7,
+        "reg_lambda": 10,
+        "reg_alpha": 1,
+        "objective": "reg:absoluteerror",
+        "n_estimators": 300,
+        "min_child_weight": 10,
+        "max_depth": 4,
+        "learning_rate": 0.05,
+        "gamma": 1,
+        "colsample_bytree": 1.0
+    }
+}

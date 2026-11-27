@@ -1,0 +1,11 @@
+feature,importance
+appliances_lag_0,0.35816395
+appliances_lag_1,0.18204051
+appliances_lag_2,0.08257484
+hour,0.07245791
+T2,0.056252908
+T1,0.05401581
+RH_2,0.050636705
+day_of_week,0.05032125
+T_out,0.04692453
+RH_1,0.04661156

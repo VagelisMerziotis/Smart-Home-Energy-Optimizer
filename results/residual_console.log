@@ -1,0 +1,139 @@
+================================================================================
+SMART HOME ENERGY OPTIMIZER
+Residual XGBoost Optimization
+================================================================================
+Training samples: 15,785
+Test samples: 3,947
+Features: 10
+
+Residual target statistics:
+count    15785.0000
+mean         0.0158
+std         73.3633
+min       -640.0000
+25%        -10.0000
+50%          0.0000
+75%         10.0000
+max        690.0000
+
+Time Series Cross-Validation
+-----------------------------------------------------------------
+
+Fold 1
+  Training samples: 2,635
+  Validation samples: 2,630
+  Training end: 2016-01-30 00:30:00
+  Validation start: 2016-01-30 00:40:00
+
+Fold 2
+  Training samples: 5,265
+  Validation samples: 2,630
+  Training end: 2016-02-17 06:50:00
+  Validation start: 2016-02-17 07:00:00
+
+Fold 3
+  Training samples: 7,895
+  Validation samples: 2,630
+  Training end: 2016-03-06 13:10:00
+  Validation start: 2016-03-06 13:20:00
+
+Fold 4
+  Training samples: 10,525
+  Validation samples: 2,630
+  Training end: 2016-03-24 19:30:00
+  Validation start: 2016-03-24 19:40:00
+
+Fold 5
+  Training samples: 13,155
+  Validation samples: 2,630
+  Training end: 2016-04-12 01:50:00
+  Validation start: 2016-04-12 02:00:00
+
+Starting residual optimization...
+Fitting 5 folds for each of 100 candidates, totalling 500 fits
+
+Residual optimization completed.
+Tuning time: 31.44 sec
+
+Best parameters:
+{
+    "subsample": 0.9,
+    "reg_lambda": 10,
+    "reg_alpha": 1,
+    "objective": "reg:absoluteerror",
+    "n_estimators": 200,
+    "min_child_weight": 5,
+    "max_depth": 8,
+    "learning_rate": 0.05,
+    "gamma": 0.1,
+    "colsample_bytree": 1.0
+}
+
+Top 10 residual configurations:
+--------------------------------------------------------------------------------
+ rank_test_MAE      param_objective  param_n_estimators  param_max_depth  param_learning_rate  mean_test_MAE  mean_test_RMSE
+             1    reg:absoluteerror                 200                8                 0.05        26.8043         65.2715
+             2    reg:absoluteerror                 500                4                 0.05        26.8221         65.5632
+             3    reg:absoluteerror                 300                8                 0.05        26.8624         65.0872
+             4    reg:absoluteerror                 300                4                 0.05        26.8832         65.6605
+             5 reg:pseudohubererror                 800                8                 0.05        26.9403         66.0362
+             6    reg:absoluteerror                 200                6                 0.05        26.9422         65.7018
+             7 reg:pseudohubererror                 500                8                 0.01        27.0258         66.8372
+             8 reg:pseudohubererror                 300                4                 0.10        27.0323         66.4995
+             9    reg:absoluteerror                 200                8                 0.03        27.0336         65.5216
+            10    reg:absoluteerror                 100                8                 0.05        27.0562         65.6086
+
+================================================================================
+FINAL CROSS-VALIDATION COMPARISON
+================================================================================
+            Model     MAE    RMSE
+      Persistence 30.2631 72.9538
+ Original XGBoost 32.6906 66.3049
+Optimized XGBoost 26.9670 65.9907
+ Residual XGBoost 26.8043 65.2715
+
+Model selected using CV only:
+{
+    "selected_model": "Residual XGBoost",
+    "selection_criterion": "Minimum mean time-series CV MAE",
+    "tie_breaker": "CV RMSE",
+    "cv_mae_wh": 26.80426864910214,
+    "cv_rmse_wh": 65.27153986183038,
+    "persistence_cv_mae_wh": 30.263117870722432,
+    "beats_persistence_cv_mae": true,
+    "test_metrics_used_for_selection": false
+}
+
+================================================================================
+FINAL TEST SET COMPARISON
+================================================================================
+            Model     MAE    RMSE  Precision  Recall     F1  TP   TN  FP  FN
+      Persistence 26.6506 66.4376     0.7690  0.7690 0.7690 636 2929 191 191
+ Original XGBoost 38.6514 65.8765     0.4624  0.9371 0.6193 775 2219 901  52
+Optimized XGBoost 23.0801 59.0948     0.7299  0.8331 0.7781 689 2865 255 138
+ Residual XGBoost 23.3849 59.3448     0.7422  0.8319 0.7845 688 2881 239 139
+
+================================================================================
+ENERGY POLICY COMPARISON
+================================================================================
+                    Policy  Intervals  Normal_intervals  Eco_intervals  Eco_percent  Consumption_Wh  Savings_Wh  Savings_percent
+             Always Normal       3947              3947              0       0.0000        380400.0         0.0           0.0000
+      Adaptive Persistence       3947              3120            827      20.9526        370664.4      9735.6           2.5593
+ Adaptive Original XGBoost       3947              2271           1676      42.4626        366013.8     14386.2           3.7819
+Adaptive Optimized XGBoost       3947              3003            944      23.9169        369873.6     10526.4           2.7672
+ Adaptive Residual XGBoost       3947              3020            927      23.4862        369922.2     10477.8           2.7544
+
+Saved artifacts:
+  /Users/user/Documents/gkoumopoulos/models/xgboost_residual.json
+  /Users/user/Documents/gkoumopoulos/models/residual_metadata.json
+  /Users/user/Documents/gkoumopoulos/results/residual_tuning_results.csv
+  /Users/user/Documents/gkoumopoulos/results/residual_best_parameters.json
+  /Users/user/Documents/gkoumopoulos/results/residual_predictions.csv
+  /Users/user/Documents/gkoumopoulos/results/residual_metrics.json
+  /Users/user/Documents/gkoumopoulos/results/final_model_comparison.csv
+  /Users/user/Documents/gkoumopoulos/results/final_cv_comparison.csv
+  /Users/user/Documents/gkoumopoulos/results/model_selection.json
+  /Users/user/Documents/gkoumopoulos/results/energy_policy_comparison.csv
+
+Residual Optimization: COMPLETED
+================================================================================

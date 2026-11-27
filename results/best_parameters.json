@@ -1,0 +1,20 @@
+{
+    "best_parameters": {
+        "subsample": 0.7,
+        "reg_lambda": 10,
+        "reg_alpha": 1,
+        "objective": "reg:absoluteerror",
+        "n_estimators": 300,
+        "min_child_weight": 10,
+        "max_depth": 4,
+        "learning_rate": 0.05,
+        "gamma": 1,
+        "colsample_bytree": 1.0
+    },
+    "selection_metric": "MAE",
+    "cv_mae_wh": 26.966981255128808,
+    "cv_rmse_wh": 65.99069134041717,
+    "cv_splits": 5,
+    "search_iterations": 100,
+    "tuning_time_seconds": 12.446673166006804
+}

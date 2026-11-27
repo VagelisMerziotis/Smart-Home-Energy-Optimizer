@@ -1,0 +1,16 @@
+# Streamlit theme for the Smart Home Energy Optimizer dashboard.
+# Usage statistics are disabled for a local academic demo.
+
+[theme]
+base = "dark"
+primaryColor = "#10B981"
+backgroundColor = "#0F172A"
+secondaryBackgroundColor = "#1E293B"
+textColor = "#F1F5F9"
+font = "sans serif"
+
+[server]
+headless = true
+
+[browser]
+gatherUsageStats = false

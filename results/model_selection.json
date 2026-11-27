@@ -1,0 +1,10 @@
+{
+    "selected_model": "Residual XGBoost",
+    "selection_criterion": "Minimum mean time-series CV MAE",
+    "tie_breaker": "CV RMSE",
+    "cv_mae_wh": 26.80426864910214,
+    "cv_rmse_wh": 65.27153986183038,
+    "persistence_cv_mae_wh": 30.263117870722432,
+    "beats_persistence_cv_mae": true,
+    "test_metrics_used_for_selection": false
+}

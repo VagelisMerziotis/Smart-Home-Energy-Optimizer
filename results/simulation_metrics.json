@@ -1,0 +1,15 @@
+{
+    "model_name": "Residual XGBoost",
+    "prediction_type": "residual",
+    "eco_threshold_wh": 100.0,
+    "intervals": 3947,
+    "normal_intervals": 3020,
+    "eco_intervals": 927,
+    "eco_percent": 23.48619204459083,
+    "always_normal_wh": 380400.0,
+    "adaptive_consumption_wh": 369922.19999999995,
+    "hypothetical_savings_wh": 10477.8,
+    "hypothetical_savings_percent": 2.754416403785489,
+    "mean_processing_time_ms": 1.4399291261674778,
+    "max_processing_time_ms": 43.245957989711314
+}

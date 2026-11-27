@@ -1,0 +1,117 @@
+============================= test session starts ==============================
+platform darwin -- Python 3.13.0, pytest-9.2.0, pluggy-1.7.0 -- /Users/user/Documents/gkoumopoulos/.venv/bin/python
+cachedir: .pytest_cache
+rootdir: /Users/user/Documents/gkoumopoulos
+configfile: pytest.ini
+plugins: cov-7.1.0, anyio-4.16.0
+collecting ... collected 91 items
+
+tests/test_dashboard.py::test_dashboard_initial_load PASSED              [  1%]
+tests/test_dashboard.py::test_dashboard_navigation[Overview] PASSED      [  2%]
+tests/test_dashboard.py::test_dashboard_navigation[Live Simulation] PASSED [  3%]
+tests/test_dashboard.py::test_dashboard_navigation[ML Evaluation] PASSED [  4%]
+tests/test_dashboard.py::test_dashboard_navigation[Energy Evaluation] PASSED [  5%]
+tests/test_dashboard.py::test_dashboard_navigation[System Architecture] PASSED [  6%]
+tests/test_dashboard.py::test_overview_metrics PASSED                    [  7%]
+tests/test_dashboard.py::test_dashboard_single_step PASSED               [  8%]
+tests/test_dashboard.py::test_dashboard_reset PASSED                     [  9%]
+tests/test_dashboard.py::test_dashboard_model_switch PASSED              [ 10%]
+tests/test_data_loader.py::test_dataset_row_count PASSED                 [ 12%]
+tests/test_data_loader.py::test_dataset_column_count PASSED              [ 13%]
+tests/test_data_loader.py::test_required_columns PASSED                  [ 14%]
+tests/test_data_loader.py::test_no_missing_values PASSED                 [ 15%]
+tests/test_data_loader.py::test_no_duplicate_timestamps PASSED           [ 16%]
+tests/test_data_loader.py::test_chronological_order PASSED               [ 17%]
+tests/test_data_loader.py::test_sampling_interval PASSED                 [ 18%]
+tests/test_data_loader.py::test_non_negative_consumption PASSED          [ 19%]
+tests/test_data_loader.py::test_dataset_date_range PASSED                [ 20%]
+tests/test_integration.py::test_full_simulation_completion PASSED        [ 21%]
+tests/test_integration.py::test_no_steps_after_completion PASSED         [ 23%]
+tests/test_integration.py::test_full_prediction_consistency PASSED       [ 24%]
+tests/test_integration.py::test_final_energy_consumption PASSED          [ 25%]
+tests/test_integration.py::test_final_energy_savings PASSED              [ 26%]
+tests/test_integration.py::test_final_mode_counts PASSED                 [ 27%]
+tests/test_integration.py::test_full_energy_balance PASSED               [ 28%]
+tests/test_integration.py::test_saved_metrics_consistency PASSED         [ 29%]
+tests/test_integration.py::test_processing_time_requirement PASSED       [ 30%]
+tests/test_model_manager.py::test_final_model_selection PASSED           [ 31%]
+tests/test_model_manager.py::test_selection_based_on_cv PASSED           [ 32%]
+tests/test_model_manager.py::test_default_model PASSED                   [ 34%]
+tests/test_model_manager.py::test_model_loading[Original XGBoost] PASSED [ 35%]
+tests/test_model_manager.py::test_model_loading[Optimized XGBoost] PASSED [ 36%]
+tests/test_model_manager.py::test_model_loading[Residual XGBoost] PASSED [ 37%]
+tests/test_model_manager.py::test_prediction_consistency[Original XGBoost] PASSED [ 38%]
+tests/test_model_manager.py::test_prediction_consistency[Optimized XGBoost] PASSED [ 39%]
+tests/test_model_manager.py::test_prediction_consistency[Residual XGBoost] PASSED [ 40%]
+tests/test_model_manager.py::test_residual_first_prediction PASSED       [ 41%]
+tests/test_model_manager.py::test_predictions_are_non_negative PASSED    [ 42%]
+tests/test_policy_engine.py::test_policy_decisions[0-Normal] PASSED      [ 43%]
+tests/test_policy_engine.py::test_policy_decisions[50-Normal] PASSED     [ 45%]
+tests/test_policy_engine.py::test_policy_decisions[80-Normal] PASSED     [ 46%]
+tests/test_policy_engine.py::test_policy_decisions[99.99-Normal] PASSED  [ 47%]
+tests/test_policy_engine.py::test_policy_decisions[100-Normal] PASSED    [ 48%]
+tests/test_policy_engine.py::test_policy_decisions[100.01-Eco] PASSED    [ 49%]
+tests/test_policy_engine.py::test_policy_decisions[130-Eco] PASSED       [ 50%]
+tests/test_policy_engine.py::test_policy_decisions[500-Eco] PASSED       [ 51%]
+tests/test_policy_engine.py::test_energy_savings[200-Normal-0] PASSED    [ 52%]
+tests/test_policy_engine.py::test_energy_savings[200-Eco-12] PASSED      [ 53%]
+tests/test_policy_engine.py::test_energy_savings[300-Eco-18] PASSED      [ 54%]
+tests/test_policy_engine.py::test_energy_savings[100-Eco-6] PASSED       [ 56%]
+tests/test_policy_engine.py::test_energy_savings[0-Eco-0] PASSED         [ 57%]
+tests/test_policy_engine.py::test_simulated_consumption[200-Normal-200] PASSED [ 58%]
+tests/test_policy_engine.py::test_simulated_consumption[200-Eco-188] PASSED [ 59%]
+tests/test_policy_engine.py::test_simulated_consumption[300-Eco-282] PASSED [ 60%]
+tests/test_policy_engine.py::test_invalid_prediction[-1] PASSED          [ 61%]
+tests/test_policy_engine.py::test_invalid_prediction[nan] PASSED         [ 62%]
+tests/test_policy_engine.py::test_invalid_prediction[inf] PASSED         [ 63%]
+tests/test_policy_engine.py::test_invalid_threshold[-1] PASSED           [ 64%]
+tests/test_policy_engine.py::test_invalid_threshold[nan] PASSED          [ 65%]
+tests/test_policy_engine.py::test_invalid_threshold[inf] PASSED          [ 67%]
+tests/test_policy_engine.py::test_invalid_consumption[-1] PASSED         [ 68%]
+tests/test_policy_engine.py::test_invalid_consumption[nan] PASSED        [ 69%]
+tests/test_policy_engine.py::test_invalid_consumption[inf] PASSED        [ 70%]
+tests/test_preprocessing.py::test_feature_count PASSED                   [ 71%]
+tests/test_preprocessing.py::test_training_sample_count PASSED           [ 72%]
+tests/test_preprocessing.py::test_test_sample_count PASSED               [ 73%]
+tests/test_preprocessing.py::test_no_temporal_overlap PASSED             [ 74%]
+tests/test_preprocessing.py::test_first_test_timestamp PASSED            [ 75%]
+tests/test_preprocessing.py::test_forecast_horizon PASSED                [ 76%]
+tests/test_preprocessing.py::test_no_missing_features PASSED             [ 78%]
+tests/test_preprocessing.py::test_target_not_in_features PASSED          [ 79%]
+tests/test_preprocessing.py::test_lag_alignment[0] PASSED                [ 80%]
+tests/test_preprocessing.py::test_lag_alignment[1] PASSED                [ 81%]
+tests/test_preprocessing.py::test_lag_alignment[2] PASSED                [ 82%]
+tests/test_preprocessing.py::test_target_alignment PASSED                [ 83%]
+tests/test_preprocessing.py::test_eco_threshold PASSED                   [ 84%]
+tests/test_preprocessing.py::test_threshold_uses_training_only PASSED    [ 85%]
+tests/test_simulator.py::test_initial_state PASSED                       [ 86%]
+tests/test_simulator.py::test_single_step PASSED                         [ 87%]
+tests/test_simulator.py::test_multiple_steps PASSED                      [ 89%]
+tests/test_simulator.py::test_reset PASSED                               [ 90%]
+tests/test_simulator.py::test_first_interval PASSED                      [ 91%]
+tests/test_simulator.py::test_first_interval_energy PASSED               [ 92%]
+tests/test_simulator.py::test_chronological_replay PASSED                [ 93%]
+tests/test_simulator.py::test_energy_balance PASSED                      [ 94%]
+tests/test_simulator.py::test_mode_decisions PASSED                      [ 95%]
+tests/test_simulator.py::test_empty_summary PASSED                       [ 96%]
+tests/test_simulator.py::test_summary_interval_counts PASSED             [ 97%]
+tests/test_simulator.py::test_progress PASSED                            [ 98%]
+tests/test_simulator.py::test_replay_reproducibility PASSED              [100%]
+
+- generated xml file: /Users/user/Documents/gkoumopoulos/results/pytest_results.xml -
+================================ tests coverage ================================
+_______________ coverage: platform darwin, python 3.13.0-final-0 _______________
+
+Name               Stmts   Miss  Cover   Missing
+------------------------------------------------
+app.py               364     21    94%   171-186, 199-204, 246, 350-356, 363, 407, 1007-1009, 1018-1020, 1024, 1030, 1111, 1682
+data_loader.py        51     28    45%   17, 35, 51, 57, 69, 81, 87, 97-134, 138-139
+model_manager.py      84     28    67%   60, 84, 102, 111, 122, 132, 146, 158, 170, 203, 216, 226, 250-294, 298
+policy_engine.py      48     17    65%   79-113, 117
+preprocessing.py      73     30    59%   82, 106, 113, 160-210, 214-216
+simulator.py         121     42    65%   80, 89, 98, 121, 375-391, 404-463, 471-518, 522
+------------------------------------------------
+TOTAL                741    166    78%
+Coverage HTML written to dir results/coverage_html
+Coverage JSON written to file results/coverage.json
+============================= 91 passed in 23.01s ==============================

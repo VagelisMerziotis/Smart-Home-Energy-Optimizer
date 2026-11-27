@@ -1,0 +1,621 @@
+================================================================================
+SMART HOME ENERGY OPTIMIZER
+XGBoost Hyperparameter Optimization
+================================================================================
+XGBoost version: 3.4.1
+Training samples: 15,785
+Test samples: 3,947
+Features: 10
+Search iterations: 100
+Total search fits: 500
+
+Time Series Cross-Validation
+-----------------------------------------------------------------
+
+Fold 1
+  Training samples: 2,635
+  Validation samples: 2,630
+  Training end: 2016-01-30 00:30:00
+  Validation start: 2016-01-30 00:40:00
+
+Fold 2
+  Training samples: 5,265
+  Validation samples: 2,630
+  Training end: 2016-02-17 06:50:00
+  Validation start: 2016-02-17 07:00:00
+
+Fold 3
+  Training samples: 7,895
+  Validation samples: 2,630
+  Training end: 2016-03-06 13:10:00
+  Validation start: 2016-03-06 13:20:00
+
+Fold 4
+  Training samples: 10,525
+  Validation samples: 2,630
+  Training end: 2016-03-24 19:30:00
+  Validation start: 2016-03-24 19:40:00
+
+Fold 5
+  Training samples: 13,155
+  Validation samples: 2,630
+  Training end: 2016-04-12 01:50:00
+  Validation start: 2016-04-12 02:00:00
+
+Evaluating persistence on CV...
+
+Evaluating original XGBoost on CV...
+
+Starting hyperparameter search...
+Fitting 5 folds for each of 100 candidates, totalling 500 fits
+
+Hyperparameter search completed.
+Tuning time: 12.45 seconds
+
+Best parameters:
+{
+    "subsample": 0.7,
+    "reg_lambda": 10,
+    "reg_alpha": 1,
+    "objective": "reg:absoluteerror",
+    "n_estimators": 300,
+    "min_child_weight": 10,
+    "max_depth": 4,
+    "learning_rate": 0.05,
+    "gamma": 1,
+    "colsample_bytree": 1.0
+}
+
+Top 10 configurations by CV MAE:
+-----------------------------------------------------------------
+ rank_test_MAE   param_objective  param_n_estimators  param_max_depth  param_learning_rate  mean_test_MAE  mean_test_RMSE
+             1 reg:absoluteerror                 300                4                 0.05        26.9670         65.9907
+             2 reg:absoluteerror                 800                3                 0.03        27.1541         65.7939
+             3 reg:absoluteerror                 500                3                 0.03        27.1737         66.1728
+             4 reg:absoluteerror                 500                3                 0.03        27.2521         66.5633
+             5 reg:absoluteerror                 200                6                 0.05        27.2564         66.6760
+             6 reg:absoluteerror                 300                8                 0.05        27.3057         65.5827
+             7 reg:absoluteerror                 500                3                 0.05        27.3242         66.7048
+             8 reg:absoluteerror                 500                4                 0.05        27.3755         66.5201
+             9 reg:absoluteerror                 200                8                 0.05        27.4907         66.7614
+            10 reg:absoluteerror                 300                2                 0.03        27.6082         68.2792
+
+Evaluating models on test set...
+
+================================================================================
+CROSS-VALIDATION COMPARISON
+================================================================================
+            Model     MAE    RMSE
+      Persistence 30.2631 72.9538
+ Original XGBoost 32.6906 66.3049
+Optimized XGBoost 26.9670 65.9907
+
+================================================================================
+TEST SET MODEL COMPARISON
+================================================================================
+            Model     MAE    RMSE  Precision  Recall     F1  TP   TN  FP  FN
+      Persistence 26.6506 66.4376     0.7690  0.7690 0.7690 636 2929 191 191
+ Original XGBoost 38.6514 65.8765     0.4624  0.9371 0.6193 775 2219 901  52
+Optimized XGBoost 23.0801 59.0948     0.7299  0.8331 0.7781 689 2865 255 138
+
+Error reduction:
+
+MAE:
+  Optimized vs Persistence: 13.40%
+  Optimized vs Original: 40.29%
+
+RMSE:
+  Optimized vs Persistence: 11.05%
+  Optimized vs Original: 10.29%
+
+Saved artifacts:
+  Model: /Users/user/Documents/gkoumopoulos/models/xgboost_optimized.json
+  Metadata: /Users/user/Documents/gkoumopoulos/models/optimized_metadata.json
+  Tuning results: /Users/user/Documents/gkoumopoulos/results/tuning_results.csv
+  Best parameters: /Users/user/Documents/gkoumopoulos/results/best_parameters.json
+  Predictions: /Users/user/Documents/gkoumopoulos/results/optimized_predictions.csv
+  Metrics: /Users/user/Documents/gkoumopoulos/results/optimized_metrics.json
+  Comparison: /Users/user/Documents/gkoumopoulos/results/model_comparison.csv
+
+Optimization: COMPLETED
+================================================================================
+[CV] END colsample_bytree=0.7, gamma=0.1, learning_rate=0.03, max_depth=3, min_child_weight=10, n_estimators=100, objective=reg:squarederror, reg_alpha=1, reg_lambda=1, subsample=0.9; total time=   0.1s
+[CV] END colsample_bytree=0.7, gamma=0.1, learning_rate=0.03, max_depth=8, min_child_weight=10, n_estimators=100, objective=reg:squarederror, reg_alpha=5, reg_lambda=5, subsample=0.8; total time=   0.1s
+[CV] END colsample_bytree=0.7, gamma=0.1, learning_rate=0.03, max_depth=8, min_child_weight=10, n_estimators=100, objective=reg:squarederror, reg_alpha=5, reg_lambda=5, subsample=0.8; total time=   0.2s
+[CV] END colsample_bytree=1.0, gamma=0.1, learning_rate=0.1, max_depth=5, min_child_weight=5, n_estimators=500, objective=reg:pseudohubererror, reg_alpha=5, reg_lambda=1, subsample=0.7; total time=   0.2s
+[CV] END colsample_bytree=1.0, gamma=0.1, learning_rate=0.1, max_depth=5, min_child_weight=5, n_estimators=500, objective=reg:pseudohubererror, reg_alpha=5, reg_lambda=1, subsample=0.7; total time=   0.2s
+[CV] END colsample_bytree=0.7, gamma=0, learning_rate=0.03, max_depth=6, min_child_weight=5, n_estimators=800, objective=reg:squarederror, reg_alpha=0, reg_lambda=0.1, subsample=0.9; total time=   0.7s
+[CV] END colsample_bytree=0.7, gamma=5, learning_rate=0.05, max_depth=3, min_child_weight=10, n_estimators=100, objective=reg:absoluteerror, reg_alpha=0.1, reg_lambda=1, subsample=0.8; total time=   0.0s
+[CV] END colsample_bytree=0.8, gamma=0.1, learning_rate=0.03, max_depth=2, min_child_weight=5, n_estimators=300, objective=reg:absoluteerror, reg_alpha=0.1, reg_lambda=5, subsample=0.7; total time=   0.2s
+[CV] END colsample_bytree=1.0, gamma=0.1, learning_rate=0.1, max_depth=6, min_child_weight=10, n_estimators=200, objective=reg:squarederror, reg_alpha=5, reg_lambda=0.1, subsample=0.7; total time=   0.1s
+[CV] END colsample_bytree=0.8, gamma=5, learning_rate=0.01, max_depth=4, min_child_weight=5, n_estimators=100, objective=reg:absoluteerror, reg_alpha=0.1, reg_lambda=5, subsample=1.0; total time=   0.1s
+[CV] END colsample_bytree=0.8, gamma=5, learning_rate=0.01, max_depth=4, min_child_weight=5, n_estimators=100, objective=reg:absoluteerror, reg_alpha=0.1, reg_lambda=5, subsample=1.0; total time=   0.1s
+[CV] END colsample_bytree=0.8, gamma=0.1, learning_rate=0.05, max_depth=8, min_child_weight=1, n_estimators=800, objective=reg:pseudohubererror, reg_alpha=5, reg_lambda=5, subsample=1.0; total time=   0.3s
+[CV] END colsample_bytree=0.8, gamma=5, learning_rate=0.01, max_depth=2, min_child_weight=10, n_estimators=100, objective=reg:pseudohubererror, reg_alpha=0, reg_lambda=10, subsample=1.0; total time=   0.0s
+[CV] END colsample_bytree=0.7, gamma=5, learning_rate=0.03, max_depth=8, min_child_weight=1, n_estimators=200, objective=reg:absoluteerror, reg_alpha=5, reg_lambda=1, subsample=0.9; total time=   0.3s
+[CV] END colsample_bytree=0.7, gamma=5, learning_rate=0.03, max_depth=8, min_child_weight=1, n_estimators=200, objective=reg:absoluteerror, reg_alpha=5, reg_lambda=1, subsample=0.9; total time=   0.4s
+[CV] END colsample_bytree=0.7, gamma=5, learning_rate=0.05, max_depth=4, min_child_weight=3, n_estimators=100, objective=reg:squarederror, reg_alpha=1, reg_lambda=1, subsample=0.7; total time=   0.1s
+[CV] END colsample_bytree=0.7, gamma=5, learning_rate=0.05, max_depth=4, min_child_weight=3, n_estimators=100, objective=reg:squarederror, reg_alpha=1, reg_lambda=1, subsample=0.7; total time=   0.1s
+[CV] END colsample_bytree=0.8, gamma=0.1, learning_rate=0.03, max_depth=3, min_child_weight=3, n_estimators=800, objective=reg:absoluteerror, reg_alpha=0.1, reg_lambda=1, subsample=0.7; total time=   0.2s
+[CV] END colsample_bytree=0.8, gamma=0.1, learning_rate=0.03, max_depth=3, min_child_weight=3, n_estimators=800, objective=reg:absoluteerror, reg_alpha=0.1, reg_lambda=1, subsample=0.7; total time=   0.3s
+[CV] END colsample_bytree=0.8, gamma=5, learning_rate=0.05, max_depth=3, min_child_weight=10, n_estimators=300, objective=reg:squarederror, reg_alpha=5, reg_lambda=5, subsample=0.8; total time=   0.1s
+[CV] END colsample_bytree=0.8, gamma=5, learning_rate=0.05, max_depth=3, min_child_weight=10, n_estimators=300, objective=reg:squarederror, reg_alpha=5, reg_lambda=5, subsample=0.8; total time=   0.1s
+[CV] END colsample_bytree=0.8, gamma=5, learning_rate=0.01, max_depth=2, min_child_weight=10, n_estimators=300, objective=reg:pseudohubererror, reg_alpha=0.1, reg_lambda=0.1, subsample=1.0; total time=   0.1s
+[CV] END colsample_bytree=1.0, gamma=0.1, learning_rate=0.1, max_depth=4, min_child_weight=1, n_estimators=200, objective=reg:pseudohubererror, reg_alpha=1, reg_lambda=10, subsample=0.9; total time=   0.0s
+[CV] END colsample_bytree=0.7, gamma=1, learning_rate=0.1, max_depth=2, min_child_weight=10, n_estimators=100, objective=reg:pseudohubererror, reg_alpha=5, reg_lambda=10, subsample=0.7; total time=   0.0s
+[CV] END colsample_bytree=0.7, gamma=1, learning_rate=0.1, max_depth=2, min_child_weight=10, n_estimators=100, objective=reg:pseudohubererror, reg_alpha=5, reg_lambda=10, subsample=0.7; total time=   0.0s
+[CV] END colsample_bytree=0.7, gamma=1, learning_rate=0.1, max_depth=2, min_child_weight=10, n_estimators=100, objective=reg:pseudohubererror, reg_alpha=5, reg_lambda=10, subsample=0.7; total time=   0.0s
+[CV] END colsample_bytree=1.0, gamma=0, learning_rate=0.05, max_depth=8, min_child_weight=3, n_estimators=100, objective=reg:absoluteerror, reg_alpha=0, reg_lambda=1, subsample=1.0; total time=   0.2s
+[CV] END colsample_bytree=1.0, gamma=0.1, learning_rate=0.05, max_depth=8, min_child_weight=5, n_estimators=200, objective=reg:absoluteerror, reg_alpha=1, reg_lambda=10, subsample=0.9; total time=   0.2s
+[CV] END colsample_bytree=1.0, gamma=0.1, learning_rate=0.05, max_depth=8, min_child_weight=5, n_estimators=200, objective=reg:absoluteerror, reg_alpha=1, reg_lambda=10, subsample=0.9; total time=   0.3s
+[CV] END colsample_bytree=0.7, gamma=0.1, learning_rate=0.01, max_depth=5, min_child_weight=5, n_estimators=800, objective=reg:pseudohubererror, reg_alpha=1, reg_lambda=0.1, subsample=0.9; total time=   0.4s
+[CV] END colsample_bytree=0.7, gamma=0.1, learning_rate=0.01, max_depth=5, min_child_weight=5, n_estimators=800, objective=reg:pseudohubererror, reg_alpha=1, reg_lambda=0.1, subsample=0.9; total time=   0.2s
+[CV] END colsample_bytree=0.7, gamma=1, learning_rate=0.1, max_depth=6, min_child_weight=10, n_estimators=100, objective=reg:pseudohubererror, reg_alpha=0.1, reg_lambda=10, subsample=0.7; total time=   0.0s
+[CV] END colsample_bytree=0.7, gamma=1, learning_rate=0.1, max_depth=6, min_child_weight=10, n_estimators=100, objective=reg:pseudohubererror, reg_alpha=0.1, reg_lambda=10, subsample=0.7; total time=   0.0s
+[CV] END colsample_bytree=0.7, gamma=1, learning_rate=0.1, max_depth=6, min_child_weight=10, n_estimators=100, objective=reg:pseudohubererror, reg_alpha=0.1, reg_lambda=10, subsample=0.7; total time=   0.1s
+[CV] END colsample_bytree=1.0, gamma=1, learning_rate=0.05, max_depth=8, min_child_weight=10, n_estimators=100, objective=reg:pseudohubererror, reg_alpha=0.1, reg_lambda=5, subsample=0.8; total time=   0.0s
+[CV] END colsample_bytree=1.0, gamma=1, learning_rate=0.05, max_depth=8, min_child_weight=10, n_estimators=100, objective=reg:pseudohubererror, reg_alpha=0.1, reg_lambda=5, subsample=0.8; total time=   0.0s
+[CV] END colsample_bytree=1.0, gamma=1, learning_rate=0.05, max_depth=8, min_child_weight=10, n_estimators=100, objective=reg:pseudohubererror, reg_alpha=0.1, reg_lambda=5, subsample=0.8; total time=   0.0s
+[CV] END colsample_bytree=0.7, gamma=1, learning_rate=0.01, max_depth=5, min_child_weight=1, n_estimators=800, objective=reg:pseudohubererror, reg_alpha=1, reg_lambda=0.1, subsample=0.8; total time=   0.3s
+[CV] END colsample_bytree=0.7, gamma=1, learning_rate=0.01, max_depth=5, min_child_weight=1, n_estimators=800, objective=reg:pseudohubererror, reg_alpha=1, reg_lambda=0.1, subsample=0.8; total time=   0.4s
+[CV] END colsample_bytree=0.8, gamma=1, learning_rate=0.01, max_depth=5, min_child_weight=1, n_estimators=200, objective=reg:squarederror, reg_alpha=0, reg_lambda=10, subsample=0.8; total time=   0.1s
+[CV] END colsample_bytree=0.8, gamma=1, learning_rate=0.01, max_depth=5, min_child_weight=1, n_estimators=200, objective=reg:squarederror, reg_alpha=0, reg_lambda=10, subsample=0.8; total time=   0.2s
+[CV] END colsample_bytree=0.7, gamma=0, learning_rate=0.03, max_depth=2, min_child_weight=1, n_estimators=200, objective=reg:squarederror, reg_alpha=0, reg_lambda=10, subsample=1.0; total time=   0.0s
+[CV] END colsample_bytree=0.7, gamma=0, learning_rate=0.03, max_depth=2, min_child_weight=1, n_estimators=200, objective=reg:squarederror, reg_alpha=0, reg_lambda=10, subsample=1.0; total time=   0.1s
+[CV] END colsample_bytree=1.0, gamma=5, learning_rate=0.05, max_depth=5, min_child_weight=3, n_estimators=300, objective=reg:pseudohubererror, reg_alpha=1, reg_lambda=10, subsample=0.7; total time=   0.1s
+[CV] END colsample_bytree=1.0, gamma=5, learning_rate=0.05, max_depth=5, min_child_weight=3, n_estimators=300, objective=reg:pseudohubererror, reg_alpha=1, reg_lambda=10, subsample=0.7; total time=   0.1s
+[CV] END colsample_bytree=0.8, gamma=0, learning_rate=0.05, max_depth=6, min_child_weight=5, n_estimators=200, objective=reg:absoluteerror, reg_alpha=5, reg_lambda=5, subsample=1.0; total time=   0.2s
+[CV] END colsample_bytree=0.8, gamma=0, learning_rate=0.05, max_depth=6, min_child_weight=5, n_estimators=200, objective=reg:absoluteerror, reg_alpha=5, reg_lambda=5, subsample=1.0; total time=   0.2s
+[CV] END colsample_bytree=0.7, gamma=0.1, learning_rate=0.03, max_depth=6, min_child_weight=10, n_estimators=200, objective=reg:pseudohubererror, reg_alpha=0, reg_lambda=1, subsample=1.0; total time=   0.0s
+[CV] END colsample_bytree=0.7, gamma=0.1, learning_rate=0.03, max_depth=6, min_child_weight=10, n_estimators=200, objective=reg:pseudohubererror, reg_alpha=0, reg_lambda=1, subsample=1.0; total time=   0.0s
+[CV] END colsample_bytree=0.8, gamma=5, learning_rate=0.01, max_depth=2, min_child_weight=10, n_estimators=500, objective=reg:absoluteerror, reg_alpha=0.1, reg_lambda=1, subsample=1.0; total time=   0.2s
+[CV] END colsample_bytree=0.8, gamma=5, learning_rate=0.01, max_depth=2, min_child_weight=10, n_estimators=500, objective=reg:absoluteerror, reg_alpha=0.1, reg_lambda=1, subsample=1.0; total time=   0.2s
+[CV] END colsample_bytree=0.7, gamma=0, learning_rate=0.01, max_depth=5, min_child_weight=3, n_estimators=100, objective=reg:pseudohubererror, reg_alpha=5, reg_lambda=5, subsample=0.9; total time=   0.0s
+[CV] END colsample_bytree=0.7, gamma=0, learning_rate=0.01, max_depth=5, min_child_weight=3, n_estimators=100, objective=reg:pseudohubererror, reg_alpha=5, reg_lambda=5, subsample=0.9; total time=   0.0s
+[CV] END colsample_bytree=0.7, gamma=0.1, learning_rate=0.03, max_depth=8, min_child_weight=1, n_estimators=200, objective=reg:squarederror, reg_alpha=1, reg_lambda=5, subsample=0.8; total time=   0.5s
+[CV] END colsample_bytree=0.7, gamma=0.1, learning_rate=0.03, max_depth=8, min_child_weight=1, n_estimators=200, objective=reg:squarederror, reg_alpha=1, reg_lambda=5, subsample=0.8; total time=   0.5s
+[CV] END colsample_bytree=0.8, gamma=0.1, learning_rate=0.03, max_depth=3, min_child_weight=3, n_estimators=800, objective=reg:pseudohubererror, reg_alpha=1, reg_lambda=0.1, subsample=0.9; total time=   0.2s
+[CV] END colsample_bytree=0.8, gamma=0.1, learning_rate=0.03, max_depth=3, min_child_weight=3, n_estimators=800, objective=reg:pseudohubererror, reg_alpha=1, reg_lambda=0.1, subsample=0.9; total time=   0.1s
+[CV] END colsample_bytree=1.0, gamma=0.1, learning_rate=0.05, max_depth=6, min_child_weight=10, n_estimators=500, objective=reg:pseudohubererror, reg_alpha=1, reg_lambda=0.1, subsample=0.9; total time=   0.2s
+[CV] END colsample_bytree=0.7, gamma=1, learning_rate=0.01, max_depth=6, min_child_weight=5, n_estimators=100, objective=reg:absoluteerror, reg_alpha=0, reg_lambda=0.1, subsample=0.7; total time=   0.1s
+[CV] END colsample_bytree=0.7, gamma=0.1, learning_rate=0.03, max_depth=6, min_child_weight=3, n_estimators=300, objective=reg:squarederror, reg_alpha=0.1, reg_lambda=10, subsample=0.7; total time=   0.3s
+[CV] END colsample_bytree=0.7, gamma=0.1, learning_rate=0.1, max_depth=5, min_child_weight=5, n_estimators=300, objective=reg:absoluteerror, reg_alpha=1, reg_lambda=0.1, subsample=1.0; total time=   0.1s
+[CV] END colsample_bytree=0.7, gamma=0.1, learning_rate=0.1, max_depth=5, min_child_weight=5, n_estimators=300, objective=reg:absoluteerror, reg_alpha=1, reg_lambda=0.1, subsample=1.0; total time=   0.1s
+[CV] END colsample_bytree=0.7, gamma=0, learning_rate=0.03, max_depth=6, min_child_weight=5, n_estimators=800, objective=reg:squarederror, reg_alpha=0, reg_lambda=0.1, subsample=0.9; total time=   0.4s
+[CV] END colsample_bytree=0.7, gamma=0, learning_rate=0.03, max_depth=6, min_child_weight=5, n_estimators=800, objective=reg:squarederror, reg_alpha=0, reg_lambda=0.1, subsample=0.9; total time=   0.5s
+[CV] END colsample_bytree=0.8, gamma=0.1, learning_rate=0.03, max_depth=2, min_child_weight=5, n_estimators=300, objective=reg:absoluteerror, reg_alpha=0.1, reg_lambda=5, subsample=0.7; total time=   0.1s
+[CV] END colsample_bytree=0.8, gamma=0.1, learning_rate=0.03, max_depth=2, min_child_weight=5, n_estimators=300, objective=reg:absoluteerror, reg_alpha=0.1, reg_lambda=5, subsample=0.7; total time=   0.1s
+[CV] END colsample_bytree=0.7, gamma=0.1, learning_rate=0.05, max_depth=6, min_child_weight=10, n_estimators=200, objective=reg:squarederror, reg_alpha=5, reg_lambda=5, subsample=0.9; total time=   0.2s
+[CV] END colsample_bytree=0.7, gamma=0.1, learning_rate=0.05, max_depth=6, min_child_weight=10, n_estimators=200, objective=reg:squarederror, reg_alpha=5, reg_lambda=5, subsample=0.9; total time=   0.2s
+[CV] END colsample_bytree=0.7, gamma=0, learning_rate=0.1, max_depth=6, min_child_weight=1, n_estimators=100, objective=reg:pseudohubererror, reg_alpha=1, reg_lambda=10, subsample=0.9; total time=   0.0s
+[CV] END colsample_bytree=0.7, gamma=0, learning_rate=0.1, max_depth=6, min_child_weight=1, n_estimators=100, objective=reg:pseudohubererror, reg_alpha=1, reg_lambda=10, subsample=0.9; total time=   0.0s
+[CV] END colsample_bytree=1.0, gamma=1, learning_rate=0.03, max_depth=4, min_child_weight=1, n_estimators=800, objective=reg:pseudohubererror, reg_alpha=5, reg_lambda=10, subsample=0.8; total time=   0.1s
+[CV] END colsample_bytree=1.0, gamma=1, learning_rate=0.03, max_depth=4, min_child_weight=1, n_estimators=800, objective=reg:pseudohubererror, reg_alpha=5, reg_lambda=10, subsample=0.8; total time=   0.2s
+[CV] END colsample_bytree=0.8, gamma=1, learning_rate=0.01, max_depth=2, min_child_weight=5, n_estimators=800, objective=reg:pseudohubererror, reg_alpha=5, reg_lambda=10, subsample=1.0; total time=   0.2s
+[CV] END colsample_bytree=0.8, gamma=1, learning_rate=0.01, max_depth=2, min_child_weight=5, n_estimators=800, objective=reg:pseudohubererror, reg_alpha=5, reg_lambda=10, subsample=1.0; total time=   0.2s
+[CV] END colsample_bytree=0.7, gamma=5, learning_rate=0.05, max_depth=4, min_child_weight=3, n_estimators=100, objective=reg:squarederror, reg_alpha=1, reg_lambda=1, subsample=0.7; total time=   0.0s
+[CV] END colsample_bytree=0.7, gamma=5, learning_rate=0.05, max_depth=4, min_child_weight=3, n_estimators=100, objective=reg:squarederror, reg_alpha=1, reg_lambda=1, subsample=0.7; total time=   0.1s
+[CV] END colsample_bytree=0.8, gamma=0.1, learning_rate=0.05, max_depth=8, min_child_weight=5, n_estimators=100, objective=reg:pseudohubererror, reg_alpha=5, reg_lambda=0.1, subsample=0.9; total time=   0.0s
+[CV] END colsample_bytree=0.8, gamma=1, learning_rate=0.01, max_depth=5, min_child_weight=3, n_estimators=300, objective=reg:absoluteerror, reg_alpha=0, reg_lambda=1, subsample=0.9; total time=   0.2s
+[CV] END colsample_bytree=0.8, gamma=0.1, learning_rate=0.01, max_depth=5, min_child_weight=1, n_estimators=800, objective=reg:pseudohubererror, reg_alpha=1, reg_lambda=1, subsample=0.9; total time=   0.1s
+[CV] END colsample_bytree=0.8, gamma=0.1, learning_rate=0.01, max_depth=5, min_child_weight=1, n_estimators=800, objective=reg:pseudohubererror, reg_alpha=1, reg_lambda=1, subsample=0.9; total time=   0.1s
+[CV] END colsample_bytree=0.8, gamma=5, learning_rate=0.05, max_depth=3, min_child_weight=10, n_estimators=300, objective=reg:squarederror, reg_alpha=5, reg_lambda=5, subsample=0.8; total time=   0.1s
+[CV] END colsample_bytree=0.8, gamma=5, learning_rate=0.05, max_depth=3, min_child_weight=10, n_estimators=300, objective=reg:squarederror, reg_alpha=5, reg_lambda=5, subsample=0.8; total time=   0.1s
+[CV] END colsample_bytree=0.7, gamma=0, learning_rate=0.05, max_depth=8, min_child_weight=5, n_estimators=800, objective=reg:pseudohubererror, reg_alpha=5, reg_lambda=1, subsample=0.7; total time=   0.7s
+[CV] END colsample_bytree=0.7, gamma=0, learning_rate=0.05, max_depth=8, min_child_weight=5, n_estimators=800, objective=reg:pseudohubererror, reg_alpha=5, reg_lambda=1, subsample=0.7; total time=   0.8s
+[CV] END colsample_bytree=0.7, gamma=1, learning_rate=0.03, max_depth=2, min_child_weight=1, n_estimators=800, objective=reg:pseudohubererror, reg_alpha=0, reg_lambda=1, subsample=0.8; total time=   0.1s
+[CV] END colsample_bytree=0.7, gamma=1, learning_rate=0.03, max_depth=2, min_child_weight=1, n_estimators=800, objective=reg:pseudohubererror, reg_alpha=0, reg_lambda=1, subsample=0.8; total time=   0.2s
+[CV] END colsample_bytree=0.7, gamma=1, learning_rate=0.01, max_depth=6, min_child_weight=5, n_estimators=500, objective=reg:absoluteerror, reg_alpha=1, reg_lambda=5, subsample=1.0; total time=   0.6s
+[CV] END colsample_bytree=0.7, gamma=1, learning_rate=0.01, max_depth=5, min_child_weight=1, n_estimators=800, objective=reg:pseudohubererror, reg_alpha=1, reg_lambda=0.1, subsample=0.8; total time=   0.2s
+[CV] END colsample_bytree=0.8, gamma=1, learning_rate=0.01, max_depth=5, min_child_weight=1, n_estimators=200, objective=reg:squarederror, reg_alpha=0, reg_lambda=10, subsample=0.8; total time=   0.2s
+[CV] END colsample_bytree=1.0, gamma=0, learning_rate=0.03, max_depth=8, min_child_weight=5, n_estimators=500, objective=reg:squarederror, reg_alpha=0.1, reg_lambda=1, subsample=0.9; total time=   0.5s
+[CV] END colsample_bytree=1.0, gamma=1, learning_rate=0.01, max_depth=3, min_child_weight=1, n_estimators=500, objective=reg:squarederror, reg_alpha=5, reg_lambda=5, subsample=1.0; total time=   0.2s
+[CV] END colsample_bytree=0.8, gamma=0.1, learning_rate=0.05, max_depth=4, min_child_weight=5, n_estimators=100, objective=reg:absoluteerror, reg_alpha=1, reg_lambda=10, subsample=0.7; total time=   0.0s
+[CV] END colsample_bytree=0.7, gamma=5, learning_rate=0.03, max_depth=2, min_child_weight=10, n_estimators=300, objective=reg:pseudohubererror, reg_alpha=0, reg_lambda=1, subsample=0.9; total time=   0.1s
+[CV] END colsample_bytree=0.7, gamma=5, learning_rate=0.03, max_depth=2, min_child_weight=10, n_estimators=300, objective=reg:pseudohubererror, reg_alpha=0, reg_lambda=1, subsample=0.9; total time=   0.1s
+[CV] END colsample_bytree=0.8, gamma=5, learning_rate=0.01, max_depth=2, min_child_weight=10, n_estimators=500, objective=reg:absoluteerror, reg_alpha=0.1, reg_lambda=1, subsample=1.0; total time=   0.1s
+[CV] END colsample_bytree=0.8, gamma=5, learning_rate=0.01, max_depth=2, min_child_weight=10, n_estimators=500, objective=reg:absoluteerror, reg_alpha=0.1, reg_lambda=1, subsample=1.0; total time=   0.2s
+[CV] END colsample_bytree=0.7, gamma=0, learning_rate=0.01, max_depth=5, min_child_weight=5, n_estimators=300, objective=reg:pseudohubererror, reg_alpha=1, reg_lambda=0.1, subsample=0.9; total time=   0.1s
+[CV] END colsample_bytree=0.7, gamma=0, learning_rate=0.01, max_depth=5, min_child_weight=5, n_estimators=300, objective=reg:pseudohubererror, reg_alpha=1, reg_lambda=0.1, subsample=0.9; total time=   0.1s
+[CV] END colsample_bytree=0.7, gamma=5, learning_rate=0.01, max_depth=5, min_child_weight=3, n_estimators=100, objective=reg:squarederror, reg_alpha=1, reg_lambda=1, subsample=0.9; total time=   0.1s
+[CV] END colsample_bytree=0.7, gamma=5, learning_rate=0.01, max_depth=5, min_child_weight=3, n_estimators=100, objective=reg:squarederror, reg_alpha=1, reg_lambda=1, subsample=0.9; total time=   0.1s
+[CV] END colsample_bytree=0.8, gamma=1, learning_rate=0.1, max_depth=3, min_child_weight=5, n_estimators=800, objective=reg:pseudohubererror, reg_alpha=1, reg_lambda=5, subsample=0.7; total time=   0.1s
+[CV] END colsample_bytree=0.8, gamma=1, learning_rate=0.1, max_depth=3, min_child_weight=5, n_estimators=800, objective=reg:pseudohubererror, reg_alpha=1, reg_lambda=5, subsample=0.7; total time=   0.1s
+[CV] END colsample_bytree=1.0, gamma=1, learning_rate=0.1, max_depth=3, min_child_weight=3, n_estimators=500, objective=reg:squarederror, reg_alpha=0, reg_lambda=5, subsample=1.0; total time=   0.1s
+[CV] END colsample_bytree=1.0, gamma=1, learning_rate=0.1, max_depth=3, min_child_weight=3, n_estimators=500, objective=reg:squarederror, reg_alpha=0, reg_lambda=5, subsample=1.0; total time=   0.1s
+[CV] END colsample_bytree=0.7, gamma=5, learning_rate=0.1, max_depth=3, min_child_weight=3, n_estimators=800, objective=reg:absoluteerror, reg_alpha=1, reg_lambda=10, subsample=1.0; total time=   0.2s
+[CV] END colsample_bytree=0.7, gamma=5, learning_rate=0.1, max_depth=3, min_child_weight=3, n_estimators=800, objective=reg:absoluteerror, reg_alpha=1, reg_lambda=10, subsample=1.0; total time=   0.2s
+[CV] END colsample_bytree=0.8, gamma=0.1, learning_rate=0.03, max_depth=3, min_child_weight=3, n_estimators=800, objective=reg:pseudohubererror, reg_alpha=1, reg_lambda=0.1, subsample=0.9; total time=   0.2s
+[CV] END colsample_bytree=0.7, gamma=0, learning_rate=0.03, max_depth=2, min_child_weight=3, n_estimators=300, objective=reg:pseudohubererror, reg_alpha=0.1, reg_lambda=5, subsample=0.9; total time=   0.0s
+[CV] END colsample_bytree=0.7, gamma=1, learning_rate=0.01, max_depth=6, min_child_weight=5, n_estimators=100, objective=reg:absoluteerror, reg_alpha=0, reg_lambda=0.1, subsample=0.7; total time=   0.2s
+[CV] END colsample_bytree=0.7, gamma=1, learning_rate=0.01, max_depth=6, min_child_weight=5, n_estimators=100, objective=reg:absoluteerror, reg_alpha=0, reg_lambda=0.1, subsample=0.7; total time=   0.1s
+[CV] END colsample_bytree=0.8, gamma=5, learning_rate=0.03, max_depth=2, min_child_weight=10, n_estimators=100, objective=reg:absoluteerror, reg_alpha=5, reg_lambda=0.1, subsample=1.0; total time=   0.1s
+[CV] END colsample_bytree=1.0, gamma=5, learning_rate=0.1, max_depth=8, min_child_weight=3, n_estimators=300, objective=reg:squarederror, reg_alpha=1, reg_lambda=1, subsample=0.9; total time=   0.8s
+[CV] END colsample_bytree=0.7, gamma=0.1, learning_rate=0.03, max_depth=8, min_child_weight=10, n_estimators=100, objective=reg:squarederror, reg_alpha=5, reg_lambda=5, subsample=0.8; total time=   0.1s
+[CV] END colsample_bytree=0.7, gamma=5, learning_rate=0.05, max_depth=3, min_child_weight=10, n_estimators=100, objective=reg:absoluteerror, reg_alpha=0.1, reg_lambda=1, subsample=0.8; total time=   0.1s
+[CV] END colsample_bytree=0.7, gamma=5, learning_rate=0.05, max_depth=3, min_child_weight=10, n_estimators=100, objective=reg:absoluteerror, reg_alpha=0.1, reg_lambda=1, subsample=0.8; total time=   0.1s
+[CV] END colsample_bytree=1.0, gamma=0, learning_rate=0.05, max_depth=4, min_child_weight=1, n_estimators=500, objective=reg:absoluteerror, reg_alpha=5, reg_lambda=10, subsample=1.0; total time=   0.2s
+[CV] END colsample_bytree=1.0, gamma=0, learning_rate=0.05, max_depth=4, min_child_weight=1, n_estimators=500, objective=reg:absoluteerror, reg_alpha=5, reg_lambda=10, subsample=1.0; total time=   0.3s
+[CV] END colsample_bytree=1.0, gamma=0.1, learning_rate=0.1, max_depth=6, min_child_weight=10, n_estimators=200, objective=reg:squarederror, reg_alpha=5, reg_lambda=0.1, subsample=0.7; total time=   0.1s
+[CV] END colsample_bytree=1.0, gamma=0.1, learning_rate=0.1, max_depth=6, min_child_weight=10, n_estimators=200, objective=reg:squarederror, reg_alpha=5, reg_lambda=0.1, subsample=0.7; total time=   0.2s
+[CV] END colsample_bytree=0.8, gamma=5, learning_rate=0.01, max_depth=4, min_child_weight=5, n_estimators=100, objective=reg:absoluteerror, reg_alpha=0.1, reg_lambda=5, subsample=1.0; total time=   0.1s
+[CV] END colsample_bytree=0.8, gamma=5, learning_rate=0.01, max_depth=4, min_child_weight=5, n_estimators=100, objective=reg:absoluteerror, reg_alpha=0.1, reg_lambda=5, subsample=1.0; total time=   0.1s
+[CV] END colsample_bytree=0.7, gamma=0, learning_rate=0.05, max_depth=8, min_child_weight=1, n_estimators=300, objective=reg:squarederror, reg_alpha=5, reg_lambda=10, subsample=0.8; total time=   0.4s
+[CV] END colsample_bytree=0.7, gamma=0, learning_rate=0.05, max_depth=8, min_child_weight=1, n_estimators=300, objective=reg:squarederror, reg_alpha=5, reg_lambda=10, subsample=0.8; total time=   0.5s
+[CV] END colsample_bytree=0.7, gamma=1, learning_rate=0.1, max_depth=8, min_child_weight=1, n_estimators=800, objective=reg:pseudohubererror, reg_alpha=0, reg_lambda=0.1, subsample=0.9; total time=   0.2s
+[CV] END colsample_bytree=0.7, gamma=5, learning_rate=0.05, max_depth=4, min_child_weight=3, n_estimators=100, objective=reg:squarederror, reg_alpha=1, reg_lambda=1, subsample=0.7; total time=   0.0s
+[CV] END colsample_bytree=0.8, gamma=0.1, learning_rate=0.03, max_depth=3, min_child_weight=3, n_estimators=800, objective=reg:absoluteerror, reg_alpha=0.1, reg_lambda=1, subsample=0.7; total time=   0.5s
+[CV] END colsample_bytree=0.8, gamma=0.1, learning_rate=0.01, max_depth=5, min_child_weight=1, n_estimators=800, objective=reg:pseudohubererror, reg_alpha=1, reg_lambda=1, subsample=0.9; total time=   0.1s
+[CV] END colsample_bytree=1.0, gamma=0.1, learning_rate=0.1, max_depth=4, min_child_weight=1, n_estimators=200, objective=reg:pseudohubererror, reg_alpha=1, reg_lambda=10, subsample=0.9; total time=   0.1s
+[CV] END colsample_bytree=1.0, gamma=0.1, learning_rate=0.1, max_depth=4, min_child_weight=1, n_estimators=200, objective=reg:pseudohubererror, reg_alpha=1, reg_lambda=10, subsample=0.9; total time=   0.1s
+[CV] END colsample_bytree=0.8, gamma=1, learning_rate=0.01, max_depth=8, min_child_weight=1, n_estimators=500, objective=reg:absoluteerror, reg_alpha=1, reg_lambda=5, subsample=1.0; total time=   1.4s
+[CV] END colsample_bytree=0.8, gamma=1, learning_rate=0.01, max_depth=8, min_child_weight=1, n_estimators=500, objective=reg:absoluteerror, reg_alpha=1, reg_lambda=5, subsample=1.0; total time=   1.3s
+[CV] END colsample_bytree=0.8, gamma=1, learning_rate=0.03, max_depth=3, min_child_weight=1, n_estimators=100, objective=reg:squarederror, reg_alpha=1, reg_lambda=1, subsample=1.0; total time=   0.0s
+[CV] END colsample_bytree=0.8, gamma=1, learning_rate=0.03, max_depth=3, min_child_weight=1, n_estimators=100, objective=reg:squarederror, reg_alpha=1, reg_lambda=1, subsample=1.0; total time=   0.0s
+[CV] END colsample_bytree=0.7, gamma=0, learning_rate=0.03, max_depth=2, min_child_weight=1, n_estimators=200, objective=reg:squarederror, reg_alpha=0, reg_lambda=10, subsample=1.0; total time=   0.0s
+[CV] END colsample_bytree=0.7, gamma=0, learning_rate=0.03, max_depth=2, min_child_weight=1, n_estimators=200, objective=reg:squarederror, reg_alpha=0, reg_lambda=10, subsample=1.0; total time=   0.0s
+[CV] END colsample_bytree=0.7, gamma=0, learning_rate=0.03, max_depth=2, min_child_weight=1, n_estimators=200, objective=reg:squarederror, reg_alpha=0, reg_lambda=10, subsample=1.0; total time=   0.1s
+[CV] END colsample_bytree=1.0, gamma=5, learning_rate=0.05, max_depth=5, min_child_weight=3, n_estimators=300, objective=reg:pseudohubererror, reg_alpha=1, reg_lambda=10, subsample=0.7; total time=   0.0s
+[CV] END colsample_bytree=0.8, gamma=1, learning_rate=0.05, max_depth=4, min_child_weight=1, n_estimators=200, objective=reg:pseudohubererror, reg_alpha=1, reg_lambda=10, subsample=0.9; total time=   0.1s
+[CV] END colsample_bytree=0.8, gamma=0.1, learning_rate=0.1, max_depth=2, min_child_weight=10, n_estimators=500, objective=reg:pseudohubererror, reg_alpha=5, reg_lambda=1, subsample=0.7; total time=   0.1s
+[CV] END colsample_bytree=0.8, gamma=0, learning_rate=0.05, max_depth=6, min_child_weight=5, n_estimators=200, objective=reg:absoluteerror, reg_alpha=5, reg_lambda=5, subsample=1.0; total time=   0.1s
+[CV] END colsample_bytree=0.8, gamma=0, learning_rate=0.05, max_depth=6, min_child_weight=5, n_estimators=200, objective=reg:absoluteerror, reg_alpha=5, reg_lambda=5, subsample=1.0; total time=   0.2s
+[CV] END colsample_bytree=0.7, gamma=0, learning_rate=0.05, max_depth=2, min_child_weight=10, n_estimators=100, objective=reg:squarederror, reg_alpha=0.1, reg_lambda=5, subsample=0.7; total time=   0.0s
+[CV] END colsample_bytree=0.7, gamma=0, learning_rate=0.05, max_depth=2, min_child_weight=10, n_estimators=100, objective=reg:squarederror, reg_alpha=0.1, reg_lambda=5, subsample=0.7; total time=   0.0s
+[CV] END colsample_bytree=0.7, gamma=5, learning_rate=0.03, max_depth=2, min_child_weight=10, n_estimators=300, objective=reg:pseudohubererror, reg_alpha=0, reg_lambda=1, subsample=0.9; total time=   0.0s
+[CV] END colsample_bytree=0.7, gamma=5, learning_rate=0.03, max_depth=2, min_child_weight=10, n_estimators=300, objective=reg:pseudohubererror, reg_alpha=0, reg_lambda=1, subsample=0.9; total time=   0.1s
+[CV] END colsample_bytree=0.7, gamma=1, learning_rate=0.1, max_depth=4, min_child_weight=10, n_estimators=500, objective=reg:pseudohubererror, reg_alpha=0, reg_lambda=5, subsample=0.7; total time=   0.1s
+[CV] END colsample_bytree=0.7, gamma=1, learning_rate=0.1, max_depth=4, min_child_weight=10, n_estimators=500, objective=reg:pseudohubererror, reg_alpha=0, reg_lambda=5, subsample=0.7; total time=   0.1s
+[CV] END colsample_bytree=0.7, gamma=0, learning_rate=0.01, max_depth=5, min_child_weight=5, n_estimators=300, objective=reg:pseudohubererror, reg_alpha=1, reg_lambda=0.1, subsample=0.9; total time=   0.0s
+[CV] END colsample_bytree=0.7, gamma=0, learning_rate=0.01, max_depth=5, min_child_weight=5, n_estimators=300, objective=reg:pseudohubererror, reg_alpha=1, reg_lambda=0.1, subsample=0.9; total time=   0.1s
+[CV] END colsample_bytree=0.8, gamma=1, learning_rate=0.03, max_depth=4, min_child_weight=5, n_estimators=300, objective=reg:pseudohubererror, reg_alpha=1, reg_lambda=0.1, subsample=0.9; total time=   0.0s
+[CV] END colsample_bytree=0.8, gamma=1, learning_rate=0.03, max_depth=4, min_child_weight=5, n_estimators=300, objective=reg:pseudohubererror, reg_alpha=1, reg_lambda=0.1, subsample=0.9; total time=   0.1s
+[CV] END colsample_bytree=0.7, gamma=5, learning_rate=0.01, max_depth=5, min_child_weight=3, n_estimators=100, objective=reg:squarederror, reg_alpha=1, reg_lambda=1, subsample=0.9; total time=   0.1s
+[CV] END colsample_bytree=1.0, gamma=0.1, learning_rate=0.01, max_depth=8, min_child_weight=5, n_estimators=200, objective=reg:pseudohubererror, reg_alpha=5, reg_lambda=5, subsample=0.8; total time=   0.0s
+[CV] END colsample_bytree=0.8, gamma=1, learning_rate=0.1, max_depth=3, min_child_weight=5, n_estimators=800, objective=reg:pseudohubererror, reg_alpha=1, reg_lambda=5, subsample=0.7; total time=   0.2s
+[CV] END colsample_bytree=0.8, gamma=1, learning_rate=0.1, max_depth=3, min_child_weight=5, n_estimators=800, objective=reg:pseudohubererror, reg_alpha=1, reg_lambda=5, subsample=0.7; total time=   0.2s
+[CV] END colsample_bytree=1.0, gamma=0.1, learning_rate=0.01, max_depth=4, min_child_weight=3, n_estimators=500, objective=reg:squarederror, reg_alpha=1, reg_lambda=0.1, subsample=0.7; total time=   0.2s
+[CV] END colsample_bytree=1.0, gamma=0.1, learning_rate=0.01, max_depth=4, min_child_weight=3, n_estimators=500, objective=reg:squarederror, reg_alpha=1, reg_lambda=0.1, subsample=0.7; total time=   0.3s
+[CV] END colsample_bytree=0.7, gamma=0, learning_rate=0.03, max_depth=2, min_child_weight=3, n_estimators=300, objective=reg:pseudohubererror, reg_alpha=0.1, reg_lambda=5, subsample=0.9; total time=   0.1s
+[CV] END colsample_bytree=0.7, gamma=0, learning_rate=0.03, max_depth=2, min_child_weight=3, n_estimators=300, objective=reg:pseudohubererror, reg_alpha=0.1, reg_lambda=5, subsample=0.9; total time=   0.1s
+[CV] END colsample_bytree=1.0, gamma=0.1, learning_rate=0.05, max_depth=6, min_child_weight=10, n_estimators=500, objective=reg:pseudohubererror, reg_alpha=1, reg_lambda=0.1, subsample=0.9; total time=   0.1s
+[CV] END colsample_bytree=1.0, gamma=0.1, learning_rate=0.05, max_depth=6, min_child_weight=10, n_estimators=500, objective=reg:pseudohubererror, reg_alpha=1, reg_lambda=0.1, subsample=0.9; total time=   0.1s
+[CV] END colsample_bytree=0.8, gamma=0.1, learning_rate=0.03, max_depth=3, min_child_weight=10, n_estimators=500, objective=reg:absoluteerror, reg_alpha=1, reg_lambda=0.1, subsample=0.9; total time=   0.2s
+[CV] END colsample_bytree=0.7, gamma=0.1, learning_rate=0.05, max_depth=2, min_child_weight=1, n_estimators=800, objective=reg:pseudohubererror, reg_alpha=1, reg_lambda=10, subsample=0.9; total time=   0.0s
+[CV] END colsample_bytree=0.7, gamma=0.1, learning_rate=0.03, max_depth=3, min_child_weight=10, n_estimators=100, objective=reg:squarederror, reg_alpha=1, reg_lambda=1, subsample=0.9; total time=   0.0s
+[CV] END colsample_bytree=0.8, gamma=5, learning_rate=0.03, max_depth=2, min_child_weight=10, n_estimators=100, objective=reg:absoluteerror, reg_alpha=5, reg_lambda=0.1, subsample=1.0; total time=   0.1s
+[CV] END colsample_bytree=0.7, gamma=1, learning_rate=0.1, max_depth=3, min_child_weight=3, n_estimators=800, objective=reg:pseudohubererror, reg_alpha=1, reg_lambda=5, subsample=0.9; total time=   0.1s
+[CV] END colsample_bytree=0.7, gamma=1, learning_rate=0.1, max_depth=3, min_child_weight=3, n_estimators=800, objective=reg:pseudohubererror, reg_alpha=1, reg_lambda=5, subsample=0.9; total time=   0.1s
+[CV] END colsample_bytree=0.7, gamma=1, learning_rate=0.1, max_depth=3, min_child_weight=3, n_estimators=800, objective=reg:pseudohubererror, reg_alpha=1, reg_lambda=5, subsample=0.9; total time=   0.4s
+[CV] END colsample_bytree=0.8, gamma=5, learning_rate=0.1, max_depth=6, min_child_weight=5, n_estimators=500, objective=reg:absoluteerror, reg_alpha=0.1, reg_lambda=1, subsample=0.7; total time=   0.5s
+[CV] END colsample_bytree=0.8, gamma=5, learning_rate=0.1, max_depth=6, min_child_weight=5, n_estimators=500, objective=reg:absoluteerror, reg_alpha=0.1, reg_lambda=1, subsample=0.7; total time=   0.5s
+[CV] END colsample_bytree=0.7, gamma=0.1, learning_rate=0.1, max_depth=5, min_child_weight=5, n_estimators=300, objective=reg:absoluteerror, reg_alpha=1, reg_lambda=0.1, subsample=1.0; total time=   0.2s
+[CV] END colsample_bytree=0.7, gamma=0.1, learning_rate=0.1, max_depth=5, min_child_weight=5, n_estimators=300, objective=reg:absoluteerror, reg_alpha=1, reg_lambda=0.1, subsample=1.0; total time=   0.2s
+[CV] END colsample_bytree=1.0, gamma=0, learning_rate=0.05, max_depth=3, min_child_weight=1, n_estimators=100, objective=reg:squarederror, reg_alpha=0, reg_lambda=0.1, subsample=0.8; total time=   0.0s
+[CV] END colsample_bytree=1.0, gamma=0, learning_rate=0.05, max_depth=3, min_child_weight=1, n_estimators=100, objective=reg:squarederror, reg_alpha=0, reg_lambda=0.1, subsample=0.8; total time=   0.0s
+[CV] END colsample_bytree=0.7, gamma=5, learning_rate=0.05, max_depth=3, min_child_weight=1, n_estimators=500, objective=reg:absoluteerror, reg_alpha=0.1, reg_lambda=10, subsample=0.8; total time=   0.2s
+[CV] END colsample_bytree=0.7, gamma=5, learning_rate=0.05, max_depth=3, min_child_weight=1, n_estimators=500, objective=reg:absoluteerror, reg_alpha=0.1, reg_lambda=10, subsample=0.8; total time=   0.2s
+[CV] END colsample_bytree=0.7, gamma=1, learning_rate=0.01, max_depth=2, min_child_weight=1, n_estimators=300, objective=reg:absoluteerror, reg_alpha=0, reg_lambda=5, subsample=1.0; total time=   0.0s
+[CV] END colsample_bytree=0.7, gamma=1, learning_rate=0.01, max_depth=2, min_child_weight=1, n_estimators=300, objective=reg:absoluteerror, reg_alpha=0, reg_lambda=5, subsample=1.0; total time=   0.1s
+[CV] END colsample_bytree=0.7, gamma=1, learning_rate=0.01, max_depth=2, min_child_weight=1, n_estimators=300, objective=reg:absoluteerror, reg_alpha=0, reg_lambda=5, subsample=1.0; total time=   0.1s
+[CV] END colsample_bytree=1.0, gamma=1, learning_rate=0.05, max_depth=8, min_child_weight=5, n_estimators=500, objective=reg:squarederror, reg_alpha=5, reg_lambda=10, subsample=0.7; total time=   0.6s
+[CV] END colsample_bytree=1.0, gamma=1, learning_rate=0.03, max_depth=4, min_child_weight=1, n_estimators=800, objective=reg:pseudohubererror, reg_alpha=5, reg_lambda=10, subsample=0.8; total time=   0.1s
+[CV] END colsample_bytree=1.0, gamma=1, learning_rate=0.03, max_depth=4, min_child_weight=1, n_estimators=800, objective=reg:pseudohubererror, reg_alpha=5, reg_lambda=10, subsample=0.8; total time=   0.1s
+[CV] END colsample_bytree=0.7, gamma=5, learning_rate=0.03, max_depth=8, min_child_weight=1, n_estimators=200, objective=reg:absoluteerror, reg_alpha=5, reg_lambda=1, subsample=0.9; total time=   0.5s
+[CV] END colsample_bytree=0.7, gamma=5, learning_rate=0.03, max_depth=8, min_child_weight=1, n_estimators=200, objective=reg:absoluteerror, reg_alpha=5, reg_lambda=1, subsample=0.9; total time=   0.5s
+[CV] END colsample_bytree=0.7, gamma=5, learning_rate=0.1, max_depth=3, min_child_weight=1, n_estimators=100, objective=reg:squarederror, reg_alpha=0.1, reg_lambda=0.1, subsample=0.8; total time=   0.0s
+[CV] END colsample_bytree=0.7, gamma=5, learning_rate=0.1, max_depth=3, min_child_weight=1, n_estimators=100, objective=reg:squarederror, reg_alpha=0.1, reg_lambda=0.1, subsample=0.8; total time=   0.0s
+[CV] END colsample_bytree=0.7, gamma=5, learning_rate=0.1, max_depth=3, min_child_weight=1, n_estimators=100, objective=reg:squarederror, reg_alpha=0.1, reg_lambda=0.1, subsample=0.8; total time=   0.0s
+[CV] END colsample_bytree=0.8, gamma=5, learning_rate=0.01, max_depth=8, min_child_weight=3, n_estimators=500, objective=reg:pseudohubererror, reg_alpha=0, reg_lambda=0.1, subsample=1.0; total time=   0.2s
+[CV] END colsample_bytree=0.8, gamma=5, learning_rate=0.05, max_depth=3, min_child_weight=10, n_estimators=300, objective=reg:squarederror, reg_alpha=5, reg_lambda=5, subsample=0.8; total time=   0.1s
+[CV] END colsample_bytree=0.7, gamma=0, learning_rate=0.05, max_depth=8, min_child_weight=5, n_estimators=800, objective=reg:pseudohubererror, reg_alpha=5, reg_lambda=1, subsample=0.7; total time=   0.2s
+[CV] END colsample_bytree=0.8, gamma=5, learning_rate=0.03, max_depth=4, min_child_weight=10, n_estimators=100, objective=reg:absoluteerror, reg_alpha=5, reg_lambda=5, subsample=1.0; total time=   0.1s
+[CV] END colsample_bytree=0.8, gamma=1, learning_rate=0.01, max_depth=8, min_child_weight=1, n_estimators=500, objective=reg:absoluteerror, reg_alpha=1, reg_lambda=5, subsample=1.0; total time=   0.8s
+[CV] END colsample_bytree=0.8, gamma=1, learning_rate=0.05, max_depth=3, min_child_weight=3, n_estimators=300, objective=reg:pseudohubererror, reg_alpha=0, reg_lambda=10, subsample=0.8; total time=   0.1s
+[CV] END colsample_bytree=0.8, gamma=0, learning_rate=0.1, max_depth=8, min_child_weight=10, n_estimators=300, objective=reg:absoluteerror, reg_alpha=5, reg_lambda=0.1, subsample=0.8; total time=   0.2s
+[CV] END colsample_bytree=1.0, gamma=0, learning_rate=0.05, max_depth=8, min_child_weight=10, n_estimators=300, objective=reg:absoluteerror, reg_alpha=0, reg_lambda=0.1, subsample=0.8; total time=   0.2s
+[CV] END colsample_bytree=1.0, gamma=0, learning_rate=0.05, max_depth=8, min_child_weight=10, n_estimators=300, objective=reg:absoluteerror, reg_alpha=0, reg_lambda=0.1, subsample=0.8; total time=   0.3s
+[CV] END colsample_bytree=0.7, gamma=1, learning_rate=0.01, max_depth=6, min_child_weight=5, n_estimators=500, objective=reg:absoluteerror, reg_alpha=1, reg_lambda=5, subsample=1.0; total time=   0.3s
+[CV] END colsample_bytree=0.7, gamma=1, learning_rate=0.01, max_depth=6, min_child_weight=5, n_estimators=500, objective=reg:absoluteerror, reg_alpha=1, reg_lambda=5, subsample=1.0; total time=   0.4s
+[CV] END colsample_bytree=1.0, gamma=1, learning_rate=0.03, max_depth=3, min_child_weight=3, n_estimators=500, objective=reg:absoluteerror, reg_alpha=0.1, reg_lambda=10, subsample=0.9; total time=   0.3s
+[CV] END colsample_bytree=0.8, gamma=0.1, learning_rate=0.03, max_depth=3, min_child_weight=1, n_estimators=200, objective=reg:squarederror, reg_alpha=0, reg_lambda=1, subsample=1.0; total time=   0.1s
+[CV] END colsample_bytree=1.0, gamma=1, learning_rate=0.1, max_depth=6, min_child_weight=3, n_estimators=200, objective=reg:squarederror, reg_alpha=5, reg_lambda=10, subsample=0.8; total time=   0.2s
+[CV] END colsample_bytree=1.0, gamma=1, learning_rate=0.1, max_depth=6, min_child_weight=3, n_estimators=200, objective=reg:squarederror, reg_alpha=5, reg_lambda=10, subsample=0.8; total time=   0.2s
+[CV] END colsample_bytree=1.0, gamma=1, learning_rate=0.01, max_depth=3, min_child_weight=1, n_estimators=500, objective=reg:squarederror, reg_alpha=5, reg_lambda=5, subsample=1.0; total time=   0.1s
+[CV] END colsample_bytree=1.0, gamma=1, learning_rate=0.01, max_depth=3, min_child_weight=1, n_estimators=500, objective=reg:squarederror, reg_alpha=5, reg_lambda=5, subsample=1.0; total time=   0.1s
+[CV] END colsample_bytree=0.7, gamma=0, learning_rate=0.05, max_depth=2, min_child_weight=10, n_estimators=100, objective=reg:squarederror, reg_alpha=0.1, reg_lambda=5, subsample=0.7; total time=   0.0s
+[CV] END colsample_bytree=0.7, gamma=0, learning_rate=0.05, max_depth=2, min_child_weight=10, n_estimators=100, objective=reg:squarederror, reg_alpha=0.1, reg_lambda=5, subsample=0.7; total time=   0.0s
+[CV] END colsample_bytree=0.7, gamma=5, learning_rate=0.03, max_depth=2, min_child_weight=10, n_estimators=300, objective=reg:pseudohubererror, reg_alpha=0, reg_lambda=1, subsample=0.9; total time=   0.1s
+[CV] END colsample_bytree=0.7, gamma=1, learning_rate=0.1, max_depth=4, min_child_weight=10, n_estimators=500, objective=reg:pseudohubererror, reg_alpha=0, reg_lambda=5, subsample=0.7; total time=   0.1s
+[CV] END colsample_bytree=0.7, gamma=0.1, learning_rate=0.03, max_depth=8, min_child_weight=5, n_estimators=100, objective=reg:squarederror, reg_alpha=0, reg_lambda=5, subsample=0.9; total time=   0.1s
+[CV] END colsample_bytree=0.7, gamma=0.1, learning_rate=0.03, max_depth=8, min_child_weight=5, n_estimators=100, objective=reg:squarederror, reg_alpha=0, reg_lambda=5, subsample=0.9; total time=   0.2s
+[CV] END colsample_bytree=0.7, gamma=0, learning_rate=0.01, max_depth=5, min_child_weight=5, n_estimators=300, objective=reg:pseudohubererror, reg_alpha=1, reg_lambda=0.1, subsample=0.9; total time=   0.1s
+[CV] END colsample_bytree=0.8, gamma=1, learning_rate=0.03, max_depth=4, min_child_weight=5, n_estimators=300, objective=reg:pseudohubererror, reg_alpha=1, reg_lambda=0.1, subsample=0.9; total time=   0.1s
+[CV] END colsample_bytree=0.7, gamma=0, learning_rate=0.01, max_depth=5, min_child_weight=3, n_estimators=100, objective=reg:pseudohubererror, reg_alpha=5, reg_lambda=5, subsample=0.9; total time=   0.0s
+[CV] END colsample_bytree=0.7, gamma=0, learning_rate=0.01, max_depth=5, min_child_weight=3, n_estimators=100, objective=reg:pseudohubererror, reg_alpha=5, reg_lambda=5, subsample=0.9; total time=   0.0s
+[CV] END colsample_bytree=0.7, gamma=5, learning_rate=0.01, max_depth=5, min_child_weight=3, n_estimators=100, objective=reg:squarederror, reg_alpha=1, reg_lambda=1, subsample=0.9; total time=   0.1s
+[CV] END colsample_bytree=0.7, gamma=5, learning_rate=0.01, max_depth=5, min_child_weight=3, n_estimators=100, objective=reg:squarederror, reg_alpha=1, reg_lambda=1, subsample=0.9; total time=   0.1s
+[CV] END colsample_bytree=1.0, gamma=0.1, learning_rate=0.01, max_depth=8, min_child_weight=5, n_estimators=200, objective=reg:pseudohubererror, reg_alpha=5, reg_lambda=5, subsample=0.8; total time=   0.0s
+[CV] END colsample_bytree=1.0, gamma=0.1, learning_rate=0.01, max_depth=8, min_child_weight=5, n_estimators=200, objective=reg:pseudohubererror, reg_alpha=5, reg_lambda=5, subsample=0.8; total time=   0.1s
+[CV] END colsample_bytree=1.0, gamma=5, learning_rate=0.05, max_depth=8, min_child_weight=1, n_estimators=100, objective=reg:absoluteerror, reg_alpha=0, reg_lambda=1, subsample=1.0; total time=   0.2s
+[CV] END colsample_bytree=1.0, gamma=5, learning_rate=0.05, max_depth=8, min_child_weight=1, n_estimators=100, objective=reg:absoluteerror, reg_alpha=0, reg_lambda=1, subsample=1.0; total time=   0.3s
+[CV] END colsample_bytree=0.7, gamma=5, learning_rate=0.1, max_depth=3, min_child_weight=3, n_estimators=800, objective=reg:absoluteerror, reg_alpha=1, reg_lambda=10, subsample=1.0; total time=   0.3s
+[CV] END colsample_bytree=0.7, gamma=5, learning_rate=0.1, max_depth=3, min_child_weight=3, n_estimators=800, objective=reg:absoluteerror, reg_alpha=1, reg_lambda=10, subsample=1.0; total time=   0.3s
+[CV] END colsample_bytree=0.8, gamma=0.1, learning_rate=0.03, max_depth=3, min_child_weight=10, n_estimators=500, objective=reg:absoluteerror, reg_alpha=1, reg_lambda=0.1, subsample=0.9; total time=   0.1s
+[CV] END colsample_bytree=0.8, gamma=0.1, learning_rate=0.03, max_depth=3, min_child_weight=10, n_estimators=500, objective=reg:absoluteerror, reg_alpha=1, reg_lambda=0.1, subsample=0.9; total time=   0.1s
+[CV] END colsample_bytree=0.7, gamma=0.1, learning_rate=0.03, max_depth=3, min_child_weight=10, n_estimators=100, objective=reg:squarederror, reg_alpha=1, reg_lambda=1, subsample=0.9; total time=   0.1s
+[CV] END colsample_bytree=0.7, gamma=0.1, learning_rate=0.03, max_depth=6, min_child_weight=3, n_estimators=300, objective=reg:squarederror, reg_alpha=0.1, reg_lambda=10, subsample=0.7; total time=   0.3s
+[CV] END colsample_bytree=0.7, gamma=0.1, learning_rate=0.01, max_depth=6, min_child_weight=5, n_estimators=800, objective=reg:squarederror, reg_alpha=5, reg_lambda=10, subsample=0.7; total time=   0.5s
+[CV] END colsample_bytree=0.7, gamma=0.1, learning_rate=0.01, max_depth=6, min_child_weight=5, n_estimators=800, objective=reg:squarederror, reg_alpha=5, reg_lambda=10, subsample=0.7; total time=   0.6s
+[CV] END colsample_bytree=1.0, gamma=1, learning_rate=0.1, max_depth=4, min_child_weight=3, n_estimators=300, objective=reg:pseudohubererror, reg_alpha=0.1, reg_lambda=0.1, subsample=0.9; total time=   0.0s
+[CV] END colsample_bytree=1.0, gamma=1, learning_rate=0.1, max_depth=4, min_child_weight=3, n_estimators=300, objective=reg:pseudohubererror, reg_alpha=0.1, reg_lambda=0.1, subsample=0.9; total time=   0.1s
+[CV] END colsample_bytree=1.0, gamma=1, learning_rate=0.1, max_depth=4, min_child_weight=3, n_estimators=300, objective=reg:pseudohubererror, reg_alpha=0.1, reg_lambda=0.1, subsample=0.9; total time=   0.1s
+[CV] END colsample_bytree=1.0, gamma=1, learning_rate=0.1, max_depth=4, min_child_weight=3, n_estimators=300, objective=reg:pseudohubererror, reg_alpha=0.1, reg_lambda=0.1, subsample=0.9; total time=   0.1s
+[CV] END colsample_bytree=1.0, gamma=0.1, learning_rate=0.1, max_depth=5, min_child_weight=5, n_estimators=500, objective=reg:pseudohubererror, reg_alpha=5, reg_lambda=1, subsample=0.7; total time=   0.3s
+[CV] END colsample_bytree=1.0, gamma=0.1, learning_rate=0.1, max_depth=5, min_child_weight=5, n_estimators=500, objective=reg:pseudohubererror, reg_alpha=5, reg_lambda=1, subsample=0.7; total time=   0.4s
+[CV] END colsample_bytree=0.7, gamma=0.1, learning_rate=0.01, max_depth=4, min_child_weight=10, n_estimators=500, objective=reg:squarederror, reg_alpha=5, reg_lambda=5, subsample=1.0; total time=   0.2s
+[CV] END colsample_bytree=0.7, gamma=0.1, learning_rate=0.01, max_depth=4, min_child_weight=10, n_estimators=500, objective=reg:squarederror, reg_alpha=5, reg_lambda=5, subsample=1.0; total time=   0.2s
+[CV] END colsample_bytree=1.0, gamma=1, learning_rate=0.05, max_depth=8, min_child_weight=5, n_estimators=500, objective=reg:squarederror, reg_alpha=5, reg_lambda=10, subsample=0.7; total time=   0.8s
+[CV] END colsample_bytree=1.0, gamma=1, learning_rate=0.05, max_depth=8, min_child_weight=5, n_estimators=500, objective=reg:squarederror, reg_alpha=5, reg_lambda=10, subsample=0.7; total time=   1.0s
+[CV] END colsample_bytree=0.8, gamma=0.1, learning_rate=0.01, max_depth=5, min_child_weight=1, n_estimators=800, objective=reg:pseudohubererror, reg_alpha=1, reg_lambda=1, subsample=0.9; total time=   0.2s
+[CV] END colsample_bytree=0.8, gamma=0.1, learning_rate=0.01, max_depth=5, min_child_weight=1, n_estimators=800, objective=reg:pseudohubererror, reg_alpha=1, reg_lambda=1, subsample=0.9; total time=   0.2s
+[CV] END colsample_bytree=0.7, gamma=0, learning_rate=0.05, max_depth=8, min_child_weight=5, n_estimators=800, objective=reg:pseudohubererror, reg_alpha=5, reg_lambda=1, subsample=0.7; total time=   0.3s
+[CV] END colsample_bytree=0.7, gamma=0, learning_rate=0.05, max_depth=8, min_child_weight=5, n_estimators=800, objective=reg:pseudohubererror, reg_alpha=5, reg_lambda=1, subsample=0.7; total time=   0.5s
+[CV] END colsample_bytree=0.7, gamma=0.1, learning_rate=0.01, max_depth=5, min_child_weight=5, n_estimators=800, objective=reg:pseudohubererror, reg_alpha=1, reg_lambda=0.1, subsample=0.9; total time=   0.3s
+[CV] END colsample_bytree=0.7, gamma=0.1, learning_rate=0.01, max_depth=5, min_child_weight=5, n_estimators=800, objective=reg:pseudohubererror, reg_alpha=1, reg_lambda=0.1, subsample=0.9; total time=   0.4s
+[CV] END colsample_bytree=0.7, gamma=1, learning_rate=0.03, max_depth=2, min_child_weight=1, n_estimators=800, objective=reg:pseudohubererror, reg_alpha=0, reg_lambda=1, subsample=0.8; total time=   0.2s
+[CV] END colsample_bytree=0.7, gamma=1, learning_rate=0.03, max_depth=2, min_child_weight=1, n_estimators=800, objective=reg:pseudohubererror, reg_alpha=0, reg_lambda=1, subsample=0.8; total time=   0.2s
+[CV] END colsample_bytree=0.8, gamma=1, learning_rate=0.01, max_depth=4, min_child_weight=1, n_estimators=500, objective=reg:pseudohubererror, reg_alpha=0, reg_lambda=5, subsample=0.8; total time=   0.1s
+[CV] END colsample_bytree=0.8, gamma=1, learning_rate=0.01, max_depth=4, min_child_weight=1, n_estimators=500, objective=reg:pseudohubererror, reg_alpha=0, reg_lambda=5, subsample=0.8; total time=   0.1s
+[CV] END colsample_bytree=0.8, gamma=1, learning_rate=0.01, max_depth=4, min_child_weight=1, n_estimators=500, objective=reg:pseudohubererror, reg_alpha=0, reg_lambda=5, subsample=0.8; total time=   0.1s
+[CV] END colsample_bytree=1.0, gamma=5, learning_rate=0.03, max_depth=4, min_child_weight=5, n_estimators=300, objective=reg:squarederror, reg_alpha=0, reg_lambda=10, subsample=0.8; total time=   0.1s
+[CV] END colsample_bytree=1.0, gamma=1, learning_rate=0.03, max_depth=3, min_child_weight=3, n_estimators=500, objective=reg:absoluteerror, reg_alpha=0.1, reg_lambda=10, subsample=0.9; total time=   0.2s
+[CV] END colsample_bytree=1.0, gamma=1, learning_rate=0.03, max_depth=3, min_child_weight=3, n_estimators=500, objective=reg:absoluteerror, reg_alpha=0.1, reg_lambda=10, subsample=0.9; total time=   0.3s
+[CV] END colsample_bytree=0.8, gamma=1, learning_rate=0.03, max_depth=3, min_child_weight=1, n_estimators=100, objective=reg:squarederror, reg_alpha=1, reg_lambda=1, subsample=1.0; total time=   0.0s
+[CV] END colsample_bytree=0.8, gamma=1, learning_rate=0.03, max_depth=3, min_child_weight=1, n_estimators=100, objective=reg:squarederror, reg_alpha=1, reg_lambda=1, subsample=1.0; total time=   0.0s
+[CV] END colsample_bytree=1.0, gamma=5, learning_rate=0.05, max_depth=5, min_child_weight=3, n_estimators=300, objective=reg:pseudohubererror, reg_alpha=1, reg_lambda=10, subsample=0.7; total time=   0.0s
+[CV] END colsample_bytree=1.0, gamma=5, learning_rate=0.05, max_depth=5, min_child_weight=3, n_estimators=300, objective=reg:pseudohubererror, reg_alpha=1, reg_lambda=10, subsample=0.7; total time=   0.1s
+[CV] END colsample_bytree=1.0, gamma=0, learning_rate=0.01, max_depth=3, min_child_weight=3, n_estimators=100, objective=reg:squarederror, reg_alpha=5, reg_lambda=5, subsample=1.0; total time=   0.0s
+[CV] END colsample_bytree=1.0, gamma=0, learning_rate=0.01, max_depth=3, min_child_weight=3, n_estimators=100, objective=reg:squarederror, reg_alpha=5, reg_lambda=5, subsample=1.0; total time=   0.0s
+[CV] END colsample_bytree=1.0, gamma=0, learning_rate=0.01, max_depth=3, min_child_weight=3, n_estimators=100, objective=reg:squarederror, reg_alpha=5, reg_lambda=5, subsample=1.0; total time=   0.0s
+[CV] END colsample_bytree=0.8, gamma=0, learning_rate=0.05, max_depth=6, min_child_weight=5, n_estimators=200, objective=reg:absoluteerror, reg_alpha=5, reg_lambda=5, subsample=1.0; total time=   0.1s
+[CV] END colsample_bytree=0.8, gamma=0.1, learning_rate=0.05, max_depth=4, min_child_weight=5, n_estimators=100, objective=reg:absoluteerror, reg_alpha=1, reg_lambda=10, subsample=0.7; total time=   0.1s
+[CV] END colsample_bytree=0.8, gamma=0.1, learning_rate=0.05, max_depth=4, min_child_weight=5, n_estimators=100, objective=reg:absoluteerror, reg_alpha=1, reg_lambda=10, subsample=0.7; total time=   0.1s
+[CV] END colsample_bytree=1.0, gamma=1, learning_rate=0.05, max_depth=4, min_child_weight=10, n_estimators=300, objective=reg:absoluteerror, reg_alpha=1, reg_lambda=10, subsample=0.7; total time=   0.2s
+[CV] END colsample_bytree=0.7, gamma=0, learning_rate=0.05, max_depth=2, min_child_weight=10, n_estimators=100, objective=reg:squarederror, reg_alpha=0.1, reg_lambda=5, subsample=0.7; total time=   0.0s
+[CV] END colsample_bytree=0.7, gamma=0.1, learning_rate=0.03, max_depth=6, min_child_weight=10, n_estimators=200, objective=reg:pseudohubererror, reg_alpha=0, reg_lambda=1, subsample=1.0; total time=   0.0s
+[CV] END colsample_bytree=0.8, gamma=5, learning_rate=0.01, max_depth=2, min_child_weight=10, n_estimators=500, objective=reg:absoluteerror, reg_alpha=0.1, reg_lambda=1, subsample=1.0; total time=   0.1s
+[CV] END colsample_bytree=0.8, gamma=0.1, learning_rate=0.01, max_depth=8, min_child_weight=1, n_estimators=500, objective=reg:pseudohubererror, reg_alpha=5, reg_lambda=0.1, subsample=0.9; total time=   0.6s
+[CV] END colsample_bytree=0.8, gamma=0.1, learning_rate=0.01, max_depth=8, min_child_weight=1, n_estimators=500, objective=reg:pseudohubererror, reg_alpha=5, reg_lambda=0.1, subsample=0.9; total time=   0.8s
+[CV] END colsample_bytree=0.7, gamma=0, learning_rate=0.03, max_depth=2, min_child_weight=3, n_estimators=300, objective=reg:pseudohubererror, reg_alpha=0.1, reg_lambda=5, subsample=0.9; total time=   0.0s
+[CV] END colsample_bytree=0.7, gamma=0, learning_rate=0.03, max_depth=2, min_child_weight=3, n_estimators=300, objective=reg:pseudohubererror, reg_alpha=0.1, reg_lambda=5, subsample=0.9; total time=   0.1s
+[CV] END colsample_bytree=1.0, gamma=0.1, learning_rate=0.05, max_depth=6, min_child_weight=10, n_estimators=500, objective=reg:pseudohubererror, reg_alpha=1, reg_lambda=0.1, subsample=0.9; total time=   0.1s
+[CV] END colsample_bytree=1.0, gamma=0.1, learning_rate=0.05, max_depth=6, min_child_weight=10, n_estimators=500, objective=reg:pseudohubererror, reg_alpha=1, reg_lambda=0.1, subsample=0.9; total time=   0.3s
+[CV] END colsample_bytree=0.7, gamma=0.1, learning_rate=0.05, max_depth=2, min_child_weight=1, n_estimators=800, objective=reg:pseudohubererror, reg_alpha=1, reg_lambda=10, subsample=0.9; total time=   0.1s
+[CV] END colsample_bytree=0.7, gamma=0.1, learning_rate=0.05, max_depth=2, min_child_weight=1, n_estimators=800, objective=reg:pseudohubererror, reg_alpha=1, reg_lambda=10, subsample=0.9; total time=   0.1s
+[CV] END colsample_bytree=0.8, gamma=5, learning_rate=0.03, max_depth=2, min_child_weight=10, n_estimators=100, objective=reg:absoluteerror, reg_alpha=5, reg_lambda=0.1, subsample=1.0; total time=   0.1s
+[CV] END colsample_bytree=0.7, gamma=0.1, learning_rate=0.03, max_depth=6, min_child_weight=3, n_estimators=300, objective=reg:squarederror, reg_alpha=0.1, reg_lambda=10, subsample=0.7; total time=   0.4s
+[CV] END colsample_bytree=0.7, gamma=0.1, learning_rate=0.01, max_depth=6, min_child_weight=5, n_estimators=800, objective=reg:squarederror, reg_alpha=5, reg_lambda=10, subsample=0.7; total time=   0.9s
+[CV] END colsample_bytree=0.8, gamma=5, learning_rate=0.1, max_depth=6, min_child_weight=5, n_estimators=500, objective=reg:absoluteerror, reg_alpha=0.1, reg_lambda=1, subsample=0.7; total time=   0.2s
+[CV] END colsample_bytree=1.0, gamma=1, learning_rate=0.1, max_depth=4, min_child_weight=3, n_estimators=300, objective=reg:pseudohubererror, reg_alpha=0.1, reg_lambda=0.1, subsample=0.9; total time=   0.1s
+[CV] END colsample_bytree=1.0, gamma=0.1, learning_rate=0.1, max_depth=5, min_child_weight=5, n_estimators=500, objective=reg:pseudohubererror, reg_alpha=5, reg_lambda=1, subsample=0.7; total time=   0.1s
+[CV] END colsample_bytree=0.7, gamma=0.1, learning_rate=0.1, max_depth=5, min_child_weight=5, n_estimators=300, objective=reg:absoluteerror, reg_alpha=1, reg_lambda=0.1, subsample=1.0; total time=   0.2s
+[CV] END colsample_bytree=0.7, gamma=5, learning_rate=0.01, max_depth=2, min_child_weight=3, n_estimators=500, objective=reg:pseudohubererror, reg_alpha=0.1, reg_lambda=1, subsample=1.0; total time=   0.0s
+[CV] END colsample_bytree=0.7, gamma=5, learning_rate=0.05, max_depth=3, min_child_weight=10, n_estimators=100, objective=reg:absoluteerror, reg_alpha=0.1, reg_lambda=1, subsample=0.8; total time=   0.1s
+[CV] END colsample_bytree=0.7, gamma=5, learning_rate=0.05, max_depth=3, min_child_weight=10, n_estimators=100, objective=reg:absoluteerror, reg_alpha=0.1, reg_lambda=1, subsample=0.8; total time=   0.1s
+[CV] END colsample_bytree=1.0, gamma=0, learning_rate=0.05, max_depth=3, min_child_weight=1, n_estimators=100, objective=reg:squarederror, reg_alpha=0, reg_lambda=0.1, subsample=0.8; total time=   0.1s
+[CV] END colsample_bytree=1.0, gamma=0, learning_rate=0.05, max_depth=3, min_child_weight=1, n_estimators=100, objective=reg:squarederror, reg_alpha=0, reg_lambda=0.1, subsample=0.8; total time=   0.1s
+[CV] END colsample_bytree=1.0, gamma=0, learning_rate=0.05, max_depth=4, min_child_weight=1, n_estimators=500, objective=reg:absoluteerror, reg_alpha=5, reg_lambda=10, subsample=1.0; total time=   0.2s
+[CV] END colsample_bytree=1.0, gamma=0, learning_rate=0.05, max_depth=4, min_child_weight=1, n_estimators=500, objective=reg:absoluteerror, reg_alpha=5, reg_lambda=10, subsample=1.0; total time=   0.2s
+[CV] END colsample_bytree=0.7, gamma=1, learning_rate=0.01, max_depth=2, min_child_weight=1, n_estimators=300, objective=reg:absoluteerror, reg_alpha=0, reg_lambda=5, subsample=1.0; total time=   0.1s
+[CV] END colsample_bytree=0.7, gamma=1, learning_rate=0.01, max_depth=2, min_child_weight=1, n_estimators=300, objective=reg:absoluteerror, reg_alpha=0, reg_lambda=5, subsample=1.0; total time=   0.1s
+[CV] END colsample_bytree=1.0, gamma=0.1, learning_rate=0.1, max_depth=6, min_child_weight=10, n_estimators=200, objective=reg:squarederror, reg_alpha=5, reg_lambda=0.1, subsample=0.7; total time=   0.2s
+[CV] END colsample_bytree=1.0, gamma=0.1, learning_rate=0.1, max_depth=6, min_child_weight=10, n_estimators=200, objective=reg:squarederror, reg_alpha=5, reg_lambda=0.1, subsample=0.7; total time=   0.2s
+[CV] END colsample_bytree=0.8, gamma=5, learning_rate=0.01, max_depth=2, min_child_weight=10, n_estimators=100, objective=reg:pseudohubererror, reg_alpha=0, reg_lambda=10, subsample=1.0; total time=   0.0s
+[CV] END colsample_bytree=0.8, gamma=5, learning_rate=0.01, max_depth=2, min_child_weight=10, n_estimators=100, objective=reg:pseudohubererror, reg_alpha=0, reg_lambda=10, subsample=1.0; total time=   0.0s
+[CV] END colsample_bytree=0.7, gamma=0, learning_rate=0.1, max_depth=6, min_child_weight=1, n_estimators=100, objective=reg:pseudohubererror, reg_alpha=1, reg_lambda=10, subsample=0.9; total time=   0.0s
+[CV] END colsample_bytree=0.7, gamma=0, learning_rate=0.1, max_depth=6, min_child_weight=1, n_estimators=100, objective=reg:pseudohubererror, reg_alpha=1, reg_lambda=10, subsample=0.9; total time=   0.0s
+[CV] END colsample_bytree=0.8, gamma=1, learning_rate=0.03, max_depth=6, min_child_weight=1, n_estimators=200, objective=reg:pseudohubererror, reg_alpha=1, reg_lambda=5, subsample=1.0; total time=   0.0s
+[CV] END colsample_bytree=0.8, gamma=1, learning_rate=0.03, max_depth=6, min_child_weight=1, n_estimators=200, objective=reg:pseudohubererror, reg_alpha=1, reg_lambda=5, subsample=1.0; total time=   0.0s
+[CV] END colsample_bytree=0.8, gamma=1, learning_rate=0.03, max_depth=6, min_child_weight=1, n_estimators=200, objective=reg:pseudohubererror, reg_alpha=1, reg_lambda=5, subsample=1.0; total time=   0.1s
+[CV] END colsample_bytree=0.8, gamma=1, learning_rate=0.03, max_depth=6, min_child_weight=1, n_estimators=200, objective=reg:pseudohubererror, reg_alpha=1, reg_lambda=5, subsample=1.0; total time=   0.1s
+[CV] END colsample_bytree=0.7, gamma=5, learning_rate=0.03, max_depth=8, min_child_weight=1, n_estimators=200, objective=reg:absoluteerror, reg_alpha=5, reg_lambda=1, subsample=0.9; total time=   0.6s
+[CV] END colsample_bytree=0.8, gamma=1, learning_rate=0.01, max_depth=2, min_child_weight=5, n_estimators=800, objective=reg:pseudohubererror, reg_alpha=5, reg_lambda=10, subsample=1.0; total time=   0.1s
+[CV] END colsample_bytree=0.8, gamma=0.1, learning_rate=0.05, max_depth=8, min_child_weight=5, n_estimators=100, objective=reg:pseudohubererror, reg_alpha=5, reg_lambda=0.1, subsample=0.9; total time=   0.0s
+[CV] END colsample_bytree=0.8, gamma=0.1, learning_rate=0.05, max_depth=8, min_child_weight=5, n_estimators=100, objective=reg:pseudohubererror, reg_alpha=5, reg_lambda=0.1, subsample=0.9; total time=   0.0s
+[CV] END colsample_bytree=0.8, gamma=1, learning_rate=0.01, max_depth=5, min_child_weight=3, n_estimators=300, objective=reg:absoluteerror, reg_alpha=0, reg_lambda=1, subsample=0.9; total time=   0.3s
+[CV] END colsample_bytree=0.8, gamma=1, learning_rate=0.01, max_depth=5, min_child_weight=3, n_estimators=300, objective=reg:absoluteerror, reg_alpha=0, reg_lambda=1, subsample=0.9; total time=   0.3s
+[CV] END colsample_bytree=0.8, gamma=5, learning_rate=0.01, max_depth=2, min_child_weight=10, n_estimators=300, objective=reg:pseudohubererror, reg_alpha=0.1, reg_lambda=0.1, subsample=1.0; total time=   0.0s
+[CV] END colsample_bytree=0.8, gamma=5, learning_rate=0.01, max_depth=2, min_child_weight=10, n_estimators=300, objective=reg:pseudohubererror, reg_alpha=0.1, reg_lambda=0.1, subsample=1.0; total time=   0.0s
+[CV] END colsample_bytree=1.0, gamma=0.1, learning_rate=0.1, max_depth=4, min_child_weight=1, n_estimators=200, objective=reg:pseudohubererror, reg_alpha=1, reg_lambda=10, subsample=0.9; total time=   0.0s
+[CV] END colsample_bytree=1.0, gamma=0.1, learning_rate=0.1, max_depth=4, min_child_weight=1, n_estimators=200, objective=reg:pseudohubererror, reg_alpha=1, reg_lambda=10, subsample=0.9; total time=   0.0s
+[CV] END colsample_bytree=0.8, gamma=5, learning_rate=0.03, max_depth=4, min_child_weight=10, n_estimators=100, objective=reg:absoluteerror, reg_alpha=5, reg_lambda=5, subsample=1.0; total time=   0.0s
+[CV] END colsample_bytree=0.8, gamma=5, learning_rate=0.03, max_depth=4, min_child_weight=10, n_estimators=100, objective=reg:absoluteerror, reg_alpha=5, reg_lambda=5, subsample=1.0; total time=   0.0s
+[CV] END colsample_bytree=0.8, gamma=1, learning_rate=0.01, max_depth=8, min_child_weight=1, n_estimators=500, objective=reg:absoluteerror, reg_alpha=1, reg_lambda=5, subsample=1.0; total time=   1.0s
+[CV] END colsample_bytree=0.8, gamma=1, learning_rate=0.01, max_depth=8, min_child_weight=1, n_estimators=500, objective=reg:absoluteerror, reg_alpha=1, reg_lambda=5, subsample=1.0; total time=   1.2s
+[CV] END colsample_bytree=1.0, gamma=1, learning_rate=0.03, max_depth=3, min_child_weight=3, n_estimators=500, objective=reg:absoluteerror, reg_alpha=0.1, reg_lambda=10, subsample=0.9; total time=   0.1s
+[CV] END colsample_bytree=1.0, gamma=1, learning_rate=0.03, max_depth=3, min_child_weight=3, n_estimators=500, objective=reg:absoluteerror, reg_alpha=0.1, reg_lambda=10, subsample=0.9; total time=   0.2s
+[CV] END colsample_bytree=1.0, gamma=0, learning_rate=0.03, max_depth=8, min_child_weight=5, n_estimators=500, objective=reg:squarederror, reg_alpha=0.1, reg_lambda=1, subsample=0.9; total time=   0.7s
+[CV] END colsample_bytree=1.0, gamma=0, learning_rate=0.03, max_depth=8, min_child_weight=5, n_estimators=500, objective=reg:squarederror, reg_alpha=0.1, reg_lambda=1, subsample=0.9; total time=   0.8s
+[CV] END colsample_bytree=0.8, gamma=1, learning_rate=0.03, max_depth=4, min_child_weight=5, n_estimators=300, objective=reg:pseudohubererror, reg_alpha=1, reg_lambda=0.1, subsample=0.9; total time=   0.1s
+[CV] END colsample_bytree=0.8, gamma=1, learning_rate=0.03, max_depth=4, min_child_weight=5, n_estimators=300, objective=reg:pseudohubererror, reg_alpha=1, reg_lambda=0.1, subsample=0.9; total time=   0.1s
+[CV] END colsample_bytree=1.0, gamma=0.1, learning_rate=0.01, max_depth=8, min_child_weight=5, n_estimators=200, objective=reg:pseudohubererror, reg_alpha=5, reg_lambda=5, subsample=0.8; total time=   0.0s
+[CV] END colsample_bytree=1.0, gamma=0.1, learning_rate=0.01, max_depth=8, min_child_weight=5, n_estimators=200, objective=reg:pseudohubererror, reg_alpha=5, reg_lambda=5, subsample=0.8; total time=   0.0s
+[CV] END colsample_bytree=0.8, gamma=1, learning_rate=0.1, max_depth=3, min_child_weight=5, n_estimators=800, objective=reg:pseudohubererror, reg_alpha=1, reg_lambda=5, subsample=0.7; total time=   0.3s
+[CV] END colsample_bytree=1.0, gamma=5, learning_rate=0.05, max_depth=8, min_child_weight=1, n_estimators=100, objective=reg:absoluteerror, reg_alpha=0, reg_lambda=1, subsample=1.0; total time=   0.2s
+[CV] END colsample_bytree=1.0, gamma=0.1, learning_rate=0.01, max_depth=4, min_child_weight=3, n_estimators=500, objective=reg:squarederror, reg_alpha=1, reg_lambda=0.1, subsample=0.7; total time=   0.3s
+[CV] END colsample_bytree=1.0, gamma=0.1, learning_rate=0.01, max_depth=4, min_child_weight=3, n_estimators=500, objective=reg:squarederror, reg_alpha=1, reg_lambda=0.1, subsample=0.7; total time=   0.3s
+[CV] END colsample_bytree=0.7, gamma=1, learning_rate=0.01, max_depth=6, min_child_weight=5, n_estimators=100, objective=reg:absoluteerror, reg_alpha=0, reg_lambda=0.1, subsample=0.7; total time=   0.1s
+[CV] END colsample_bytree=0.7, gamma=1, learning_rate=0.01, max_depth=6, min_child_weight=5, n_estimators=100, objective=reg:absoluteerror, reg_alpha=0, reg_lambda=0.1, subsample=0.7; total time=   0.1s
+[CV] END colsample_bytree=0.7, gamma=0.1, learning_rate=0.03, max_depth=3, min_child_weight=10, n_estimators=100, objective=reg:squarederror, reg_alpha=1, reg_lambda=1, subsample=0.9; total time=   0.0s
+[CV] END colsample_bytree=0.7, gamma=0.1, learning_rate=0.03, max_depth=6, min_child_weight=3, n_estimators=300, objective=reg:squarederror, reg_alpha=0.1, reg_lambda=10, subsample=0.7; total time=   0.3s
+[CV] END colsample_bytree=0.7, gamma=1, learning_rate=0.1, max_depth=3, min_child_weight=3, n_estimators=800, objective=reg:pseudohubererror, reg_alpha=1, reg_lambda=5, subsample=0.9; total time=   0.4s
+[CV] END colsample_bytree=0.8, gamma=5, learning_rate=0.1, max_depth=6, min_child_weight=5, n_estimators=500, objective=reg:absoluteerror, reg_alpha=0.1, reg_lambda=1, subsample=0.7; total time=   0.3s
+[CV] END colsample_bytree=0.8, gamma=5, learning_rate=0.1, max_depth=6, min_child_weight=5, n_estimators=500, objective=reg:absoluteerror, reg_alpha=0.1, reg_lambda=1, subsample=0.7; total time=   0.4s
+[CV] END colsample_bytree=0.7, gamma=0.1, learning_rate=0.03, max_depth=8, min_child_weight=10, n_estimators=100, objective=reg:squarederror, reg_alpha=5, reg_lambda=5, subsample=0.8; total time=   0.2s
+[CV] END colsample_bytree=0.7, gamma=0.1, learning_rate=0.03, max_depth=8, min_child_weight=10, n_estimators=100, objective=reg:squarederror, reg_alpha=5, reg_lambda=5, subsample=0.8; total time=   0.2s
+[CV] END colsample_bytree=0.7, gamma=5, learning_rate=0.01, max_depth=2, min_child_weight=3, n_estimators=500, objective=reg:pseudohubererror, reg_alpha=0.1, reg_lambda=1, subsample=1.0; total time=   0.1s
+[CV] END colsample_bytree=0.7, gamma=5, learning_rate=0.01, max_depth=2, min_child_weight=3, n_estimators=500, objective=reg:pseudohubererror, reg_alpha=0.1, reg_lambda=1, subsample=1.0; total time=   0.1s
+[CV] END colsample_bytree=0.7, gamma=0, learning_rate=0.03, max_depth=6, min_child_weight=5, n_estimators=800, objective=reg:squarederror, reg_alpha=0, reg_lambda=0.1, subsample=0.9; total time=   0.6s
+[CV] END colsample_bytree=0.7, gamma=0, learning_rate=0.03, max_depth=6, min_child_weight=5, n_estimators=800, objective=reg:squarederror, reg_alpha=0, reg_lambda=0.1, subsample=0.9; total time=   0.6s
+[CV] END colsample_bytree=0.8, gamma=0.1, learning_rate=0.05, max_depth=8, min_child_weight=1, n_estimators=800, objective=reg:pseudohubererror, reg_alpha=5, reg_lambda=5, subsample=1.0; total time=   0.1s
+[CV] END colsample_bytree=0.8, gamma=0.1, learning_rate=0.05, max_depth=8, min_child_weight=1, n_estimators=800, objective=reg:pseudohubererror, reg_alpha=5, reg_lambda=5, subsample=1.0; total time=   0.1s
+[CV] END colsample_bytree=0.7, gamma=0, learning_rate=0.05, max_depth=8, min_child_weight=1, n_estimators=300, objective=reg:squarederror, reg_alpha=5, reg_lambda=10, subsample=0.8; total time=   0.7s
+[CV] END colsample_bytree=0.7, gamma=0, learning_rate=0.1, max_depth=6, min_child_weight=1, n_estimators=100, objective=reg:pseudohubererror, reg_alpha=1, reg_lambda=10, subsample=0.9; total time=   0.0s
+[CV] END colsample_bytree=0.7, gamma=1, learning_rate=0.1, max_depth=8, min_child_weight=1, n_estimators=800, objective=reg:pseudohubererror, reg_alpha=0, reg_lambda=0.1, subsample=0.9; total time=   0.2s
+[CV] END colsample_bytree=0.7, gamma=1, learning_rate=0.1, max_depth=8, min_child_weight=1, n_estimators=800, objective=reg:pseudohubererror, reg_alpha=0, reg_lambda=0.1, subsample=0.9; total time=   0.2s
+[CV] END colsample_bytree=0.8, gamma=0.1, learning_rate=0.03, max_depth=3, min_child_weight=3, n_estimators=800, objective=reg:absoluteerror, reg_alpha=0.1, reg_lambda=1, subsample=0.7; total time=   0.3s
+[CV] END colsample_bytree=0.8, gamma=0.1, learning_rate=0.03, max_depth=3, min_child_weight=3, n_estimators=800, objective=reg:absoluteerror, reg_alpha=0.1, reg_lambda=1, subsample=0.7; total time=   0.4s
+[CV] END colsample_bytree=0.7, gamma=1, learning_rate=0.1, max_depth=2, min_child_weight=10, n_estimators=100, objective=reg:pseudohubererror, reg_alpha=5, reg_lambda=10, subsample=0.7; total time=   0.0s
+[CV] END colsample_bytree=0.7, gamma=1, learning_rate=0.1, max_depth=2, min_child_weight=10, n_estimators=100, objective=reg:pseudohubererror, reg_alpha=5, reg_lambda=10, subsample=0.7; total time=   0.0s
+[CV] END colsample_bytree=1.0, gamma=0, learning_rate=0.05, max_depth=8, min_child_weight=3, n_estimators=100, objective=reg:absoluteerror, reg_alpha=0, reg_lambda=1, subsample=1.0; total time=   0.3s
+[CV] END colsample_bytree=1.0, gamma=0, learning_rate=0.05, max_depth=8, min_child_weight=3, n_estimators=100, objective=reg:absoluteerror, reg_alpha=0, reg_lambda=1, subsample=1.0; total time=   0.4s
+[CV] END colsample_bytree=0.8, gamma=1, learning_rate=0.05, max_depth=3, min_child_weight=3, n_estimators=300, objective=reg:pseudohubererror, reg_alpha=0, reg_lambda=10, subsample=0.8; total time=   0.1s
+[CV] END colsample_bytree=0.8, gamma=1, learning_rate=0.05, max_depth=3, min_child_weight=3, n_estimators=300, objective=reg:pseudohubererror, reg_alpha=0, reg_lambda=10, subsample=0.8; total time=   0.1s
+[CV] END colsample_bytree=0.8, gamma=0, learning_rate=0.1, max_depth=8, min_child_weight=10, n_estimators=300, objective=reg:absoluteerror, reg_alpha=5, reg_lambda=0.1, subsample=0.8; total time=   0.4s
+[CV] END colsample_bytree=0.8, gamma=0, learning_rate=0.1, max_depth=8, min_child_weight=10, n_estimators=300, objective=reg:absoluteerror, reg_alpha=5, reg_lambda=0.1, subsample=0.8; total time=   0.4s
+[CV] END colsample_bytree=0.8, gamma=1, learning_rate=0.01, max_depth=4, min_child_weight=1, n_estimators=500, objective=reg:pseudohubererror, reg_alpha=0, reg_lambda=5, subsample=0.8; total time=   0.1s
+[CV] END colsample_bytree=0.8, gamma=1, learning_rate=0.01, max_depth=4, min_child_weight=1, n_estimators=500, objective=reg:pseudohubererror, reg_alpha=0, reg_lambda=5, subsample=0.8; total time=   0.1s
+[CV] END colsample_bytree=1.0, gamma=5, learning_rate=0.03, max_depth=4, min_child_weight=5, n_estimators=300, objective=reg:squarederror, reg_alpha=0, reg_lambda=10, subsample=0.8; total time=   0.2s
+[CV] END colsample_bytree=1.0, gamma=5, learning_rate=0.03, max_depth=4, min_child_weight=5, n_estimators=300, objective=reg:squarederror, reg_alpha=0, reg_lambda=10, subsample=0.8; total time=   0.2s
+[CV] END colsample_bytree=0.8, gamma=1, learning_rate=0.01, max_depth=5, min_child_weight=1, n_estimators=200, objective=reg:squarederror, reg_alpha=0, reg_lambda=10, subsample=0.8; total time=   0.1s
+[CV] END colsample_bytree=0.8, gamma=1, learning_rate=0.01, max_depth=5, min_child_weight=1, n_estimators=200, objective=reg:squarederror, reg_alpha=0, reg_lambda=10, subsample=0.8; total time=   0.1s
+[CV] END colsample_bytree=1.0, gamma=1, learning_rate=0.1, max_depth=6, min_child_weight=3, n_estimators=200, objective=reg:squarederror, reg_alpha=5, reg_lambda=10, subsample=0.8; total time=   0.2s
+[CV] END colsample_bytree=0.8, gamma=1, learning_rate=0.03, max_depth=3, min_child_weight=1, n_estimators=100, objective=reg:squarederror, reg_alpha=1, reg_lambda=1, subsample=1.0; total time=   0.0s
+[CV] END colsample_bytree=0.8, gamma=1, learning_rate=0.05, max_depth=4, min_child_weight=1, n_estimators=200, objective=reg:pseudohubererror, reg_alpha=1, reg_lambda=10, subsample=0.9; total time=   0.0s
+[CV] END colsample_bytree=0.8, gamma=1, learning_rate=0.05, max_depth=4, min_child_weight=1, n_estimators=200, objective=reg:pseudohubererror, reg_alpha=1, reg_lambda=10, subsample=0.9; total time=   0.0s
+[CV] END colsample_bytree=0.8, gamma=0.1, learning_rate=0.1, max_depth=2, min_child_weight=10, n_estimators=500, objective=reg:pseudohubererror, reg_alpha=5, reg_lambda=1, subsample=0.7; total time=   0.2s
+[CV] END colsample_bytree=0.8, gamma=0.1, learning_rate=0.1, max_depth=2, min_child_weight=10, n_estimators=500, objective=reg:pseudohubererror, reg_alpha=5, reg_lambda=1, subsample=0.7; total time=   0.2s
+[CV] END colsample_bytree=1.0, gamma=1, learning_rate=0.05, max_depth=4, min_child_weight=10, n_estimators=300, objective=reg:absoluteerror, reg_alpha=1, reg_lambda=10, subsample=0.7; total time=   0.2s
+[CV] END colsample_bytree=1.0, gamma=1, learning_rate=0.05, max_depth=4, min_child_weight=10, n_estimators=300, objective=reg:absoluteerror, reg_alpha=1, reg_lambda=10, subsample=0.7; total time=   0.2s
+[CV] END colsample_bytree=0.8, gamma=0.1, learning_rate=0.01, max_depth=8, min_child_weight=1, n_estimators=500, objective=reg:pseudohubererror, reg_alpha=5, reg_lambda=0.1, subsample=0.9; total time=   0.4s
+[CV] END colsample_bytree=0.8, gamma=0.1, learning_rate=0.01, max_depth=8, min_child_weight=1, n_estimators=500, objective=reg:pseudohubererror, reg_alpha=5, reg_lambda=0.1, subsample=0.9; total time=   0.5s
+[CV] END colsample_bytree=1.0, gamma=1, learning_rate=0.1, max_depth=3, min_child_weight=3, n_estimators=500, objective=reg:squarederror, reg_alpha=0, reg_lambda=5, subsample=1.0; total time=   0.2s
+[CV] END colsample_bytree=1.0, gamma=0.1, learning_rate=0.01, max_depth=4, min_child_weight=3, n_estimators=500, objective=reg:squarederror, reg_alpha=1, reg_lambda=0.1, subsample=0.7; total time=   0.2s
+[CV] END colsample_bytree=1.0, gamma=0.1, learning_rate=0.1, max_depth=5, min_child_weight=10, n_estimators=800, objective=reg:pseudohubererror, reg_alpha=5, reg_lambda=1, subsample=0.9; total time=   0.4s
+[CV] END colsample_bytree=1.0, gamma=0.1, learning_rate=0.1, max_depth=5, min_child_weight=10, n_estimators=800, objective=reg:pseudohubererror, reg_alpha=5, reg_lambda=1, subsample=0.9; total time=   0.2s
+[CV] END colsample_bytree=0.8, gamma=5, learning_rate=0.03, max_depth=2, min_child_weight=10, n_estimators=100, objective=reg:absoluteerror, reg_alpha=5, reg_lambda=0.1, subsample=1.0; total time=   0.0s
+[CV] END colsample_bytree=1.0, gamma=5, learning_rate=0.1, max_depth=8, min_child_weight=3, n_estimators=300, objective=reg:squarederror, reg_alpha=1, reg_lambda=1, subsample=0.9; total time=   0.4s
+[CV] END colsample_bytree=1.0, gamma=5, learning_rate=0.1, max_depth=8, min_child_weight=3, n_estimators=300, objective=reg:squarederror, reg_alpha=1, reg_lambda=1, subsample=0.9; total time=   0.6s
+[CV] END colsample_bytree=0.7, gamma=5, learning_rate=0.05, max_depth=3, min_child_weight=1, n_estimators=500, objective=reg:absoluteerror, reg_alpha=0.1, reg_lambda=10, subsample=0.8; total time=   0.3s
+[CV] END colsample_bytree=0.7, gamma=5, learning_rate=0.05, max_depth=3, min_child_weight=1, n_estimators=500, objective=reg:absoluteerror, reg_alpha=0.1, reg_lambda=10, subsample=0.8; total time=   0.3s
+[CV] END colsample_bytree=0.8, gamma=0.1, learning_rate=0.03, max_depth=2, min_child_weight=5, n_estimators=300, objective=reg:absoluteerror, reg_alpha=0.1, reg_lambda=5, subsample=0.7; total time=   0.1s
+[CV] END colsample_bytree=0.8, gamma=0.1, learning_rate=0.03, max_depth=2, min_child_weight=5, n_estimators=300, objective=reg:absoluteerror, reg_alpha=0.1, reg_lambda=5, subsample=0.7; total time=   0.1s
+[CV] END colsample_bytree=0.7, gamma=0.1, learning_rate=0.05, max_depth=6, min_child_weight=10, n_estimators=200, objective=reg:squarederror, reg_alpha=5, reg_lambda=5, subsample=0.9; total time=   0.1s
+[CV] END colsample_bytree=0.7, gamma=0.1, learning_rate=0.05, max_depth=6, min_child_weight=10, n_estimators=200, objective=reg:squarederror, reg_alpha=5, reg_lambda=5, subsample=0.9; total time=   0.1s
+[CV] END colsample_bytree=0.8, gamma=0.1, learning_rate=0.05, max_depth=8, min_child_weight=1, n_estimators=800, objective=reg:pseudohubererror, reg_alpha=5, reg_lambda=5, subsample=1.0; total time=   0.1s
+[CV] END colsample_bytree=0.8, gamma=0.1, learning_rate=0.05, max_depth=8, min_child_weight=1, n_estimators=800, objective=reg:pseudohubererror, reg_alpha=5, reg_lambda=5, subsample=1.0; total time=   0.1s
+[CV] END colsample_bytree=1.0, gamma=1, learning_rate=0.03, max_depth=4, min_child_weight=1, n_estimators=800, objective=reg:pseudohubererror, reg_alpha=5, reg_lambda=10, subsample=0.8; total time=   0.2s
+[CV] END colsample_bytree=0.8, gamma=1, learning_rate=0.03, max_depth=6, min_child_weight=1, n_estimators=200, objective=reg:pseudohubererror, reg_alpha=1, reg_lambda=5, subsample=1.0; total time=   0.0s
+[CV] END colsample_bytree=0.8, gamma=1, learning_rate=0.01, max_depth=2, min_child_weight=5, n_estimators=800, objective=reg:pseudohubererror, reg_alpha=5, reg_lambda=10, subsample=1.0; total time=   0.1s
+[CV] END colsample_bytree=0.8, gamma=1, learning_rate=0.01, max_depth=2, min_child_weight=5, n_estimators=800, objective=reg:pseudohubererror, reg_alpha=5, reg_lambda=10, subsample=1.0; total time=   0.1s
+[CV] END colsample_bytree=0.7, gamma=1, learning_rate=0.1, max_depth=8, min_child_weight=1, n_estimators=800, objective=reg:pseudohubererror, reg_alpha=0, reg_lambda=0.1, subsample=0.9; total time=   0.1s
+[CV] END colsample_bytree=0.7, gamma=1, learning_rate=0.1, max_depth=8, min_child_weight=1, n_estimators=800, objective=reg:pseudohubererror, reg_alpha=0, reg_lambda=0.1, subsample=0.9; total time=   0.1s
+[CV] END colsample_bytree=0.8, gamma=0.1, learning_rate=0.05, max_depth=8, min_child_weight=5, n_estimators=100, objective=reg:pseudohubererror, reg_alpha=5, reg_lambda=0.1, subsample=0.9; total time=   0.0s
+[CV] END colsample_bytree=0.8, gamma=0.1, learning_rate=0.05, max_depth=8, min_child_weight=5, n_estimators=100, objective=reg:pseudohubererror, reg_alpha=5, reg_lambda=0.1, subsample=0.9; total time=   0.1s
+[CV] END colsample_bytree=0.8, gamma=1, learning_rate=0.01, max_depth=5, min_child_weight=3, n_estimators=300, objective=reg:absoluteerror, reg_alpha=0, reg_lambda=1, subsample=0.9; total time=   0.2s
+[CV] END colsample_bytree=0.8, gamma=1, learning_rate=0.01, max_depth=5, min_child_weight=3, n_estimators=300, objective=reg:absoluteerror, reg_alpha=0, reg_lambda=1, subsample=0.9; total time=   0.2s
+[CV] END colsample_bytree=0.8, gamma=5, learning_rate=0.01, max_depth=8, min_child_weight=3, n_estimators=500, objective=reg:pseudohubererror, reg_alpha=0, reg_lambda=0.1, subsample=1.0; total time=   0.5s
+[CV] END colsample_bytree=0.8, gamma=5, learning_rate=0.01, max_depth=8, min_child_weight=3, n_estimators=500, objective=reg:pseudohubererror, reg_alpha=0, reg_lambda=0.1, subsample=1.0; total time=   0.6s
+[CV] END colsample_bytree=0.8, gamma=1, learning_rate=0.05, max_depth=3, min_child_weight=3, n_estimators=300, objective=reg:pseudohubererror, reg_alpha=0, reg_lambda=10, subsample=0.8; total time=   0.0s
+[CV] END colsample_bytree=0.8, gamma=1, learning_rate=0.05, max_depth=3, min_child_weight=3, n_estimators=300, objective=reg:pseudohubererror, reg_alpha=0, reg_lambda=10, subsample=0.8; total time=   0.0s
+[CV] END colsample_bytree=0.8, gamma=0, learning_rate=0.1, max_depth=8, min_child_weight=10, n_estimators=300, objective=reg:absoluteerror, reg_alpha=5, reg_lambda=0.1, subsample=0.8; total time=   0.3s
+[CV] END colsample_bytree=0.8, gamma=0, learning_rate=0.1, max_depth=8, min_child_weight=10, n_estimators=300, objective=reg:absoluteerror, reg_alpha=5, reg_lambda=0.1, subsample=0.8; total time=   0.3s
+[CV] END colsample_bytree=0.7, gamma=1, learning_rate=0.1, max_depth=6, min_child_weight=10, n_estimators=100, objective=reg:pseudohubererror, reg_alpha=0.1, reg_lambda=10, subsample=0.7; total time=   0.0s
+[CV] END colsample_bytree=0.7, gamma=1, learning_rate=0.1, max_depth=6, min_child_weight=10, n_estimators=100, objective=reg:pseudohubererror, reg_alpha=0.1, reg_lambda=10, subsample=0.7; total time=   0.0s
+[CV] END colsample_bytree=1.0, gamma=1, learning_rate=0.05, max_depth=8, min_child_weight=10, n_estimators=100, objective=reg:pseudohubererror, reg_alpha=0.1, reg_lambda=5, subsample=0.8; total time=   0.0s
+[CV] END colsample_bytree=1.0, gamma=1, learning_rate=0.05, max_depth=8, min_child_weight=10, n_estimators=100, objective=reg:pseudohubererror, reg_alpha=0.1, reg_lambda=5, subsample=0.8; total time=   0.0s
+[CV] END colsample_bytree=0.7, gamma=1, learning_rate=0.01, max_depth=6, min_child_weight=5, n_estimators=500, objective=reg:absoluteerror, reg_alpha=1, reg_lambda=5, subsample=1.0; total time=   0.5s
+[CV] END colsample_bytree=0.7, gamma=1, learning_rate=0.01, max_depth=6, min_child_weight=5, n_estimators=500, objective=reg:absoluteerror, reg_alpha=1, reg_lambda=5, subsample=1.0; total time=   0.5s
+[CV] END colsample_bytree=1.0, gamma=0, learning_rate=0.03, max_depth=8, min_child_weight=5, n_estimators=500, objective=reg:squarederror, reg_alpha=0.1, reg_lambda=1, subsample=0.9; total time=   0.9s
+[CV] END colsample_bytree=1.0, gamma=0, learning_rate=0.03, max_depth=8, min_child_weight=5, n_estimators=500, objective=reg:squarederror, reg_alpha=0.1, reg_lambda=1, subsample=0.9; total time=   1.1s
+[CV] END colsample_bytree=1.0, gamma=1, learning_rate=0.1, max_depth=3, min_child_weight=3, n_estimators=500, objective=reg:squarederror, reg_alpha=0, reg_lambda=5, subsample=1.0; total time=   0.2s
+[CV] END colsample_bytree=1.0, gamma=1, learning_rate=0.1, max_depth=3, min_child_weight=3, n_estimators=500, objective=reg:squarederror, reg_alpha=0, reg_lambda=5, subsample=1.0; total time=   0.2s
+[CV] END colsample_bytree=1.0, gamma=0.1, learning_rate=0.1, max_depth=5, min_child_weight=10, n_estimators=800, objective=reg:pseudohubererror, reg_alpha=5, reg_lambda=1, subsample=0.9; total time=   0.3s
+[CV] END colsample_bytree=1.0, gamma=0.1, learning_rate=0.1, max_depth=5, min_child_weight=10, n_estimators=800, objective=reg:pseudohubererror, reg_alpha=5, reg_lambda=1, subsample=0.9; total time=   0.4s
+[CV] END colsample_bytree=0.7, gamma=0.1, learning_rate=0.03, max_depth=3, min_child_weight=10, n_estimators=100, objective=reg:squarederror, reg_alpha=1, reg_lambda=1, subsample=0.9; total time=   0.1s
+[CV] END colsample_bytree=1.0, gamma=5, learning_rate=0.1, max_depth=8, min_child_weight=3, n_estimators=300, objective=reg:squarederror, reg_alpha=1, reg_lambda=1, subsample=0.9; total time=   0.6s
+[CV] END colsample_bytree=1.0, gamma=5, learning_rate=0.1, max_depth=8, min_child_weight=3, n_estimators=300, objective=reg:squarederror, reg_alpha=1, reg_lambda=1, subsample=0.9; total time=   0.7s
+[CV] END colsample_bytree=0.7, gamma=0.1, learning_rate=0.01, max_depth=4, min_child_weight=10, n_estimators=500, objective=reg:squarederror, reg_alpha=5, reg_lambda=5, subsample=1.0; total time=   0.2s
+[CV] END colsample_bytree=0.7, gamma=0.1, learning_rate=0.01, max_depth=4, min_child_weight=10, n_estimators=500, objective=reg:squarederror, reg_alpha=5, reg_lambda=5, subsample=1.0; total time=   0.2s
+[CV] END colsample_bytree=0.7, gamma=0.1, learning_rate=0.05, max_depth=6, min_child_weight=10, n_estimators=200, objective=reg:squarederror, reg_alpha=5, reg_lambda=5, subsample=0.9; total time=   0.2s
+[CV] END colsample_bytree=0.8, gamma=5, learning_rate=0.01, max_depth=4, min_child_weight=5, n_estimators=100, objective=reg:absoluteerror, reg_alpha=0.1, reg_lambda=5, subsample=1.0; total time=   0.0s
+[CV] END colsample_bytree=0.8, gamma=5, learning_rate=0.01, max_depth=2, min_child_weight=10, n_estimators=100, objective=reg:pseudohubererror, reg_alpha=0, reg_lambda=10, subsample=1.0; total time=   0.0s
+[CV] END colsample_bytree=0.8, gamma=5, learning_rate=0.01, max_depth=2, min_child_weight=10, n_estimators=100, objective=reg:pseudohubererror, reg_alpha=0, reg_lambda=10, subsample=1.0; total time=   0.0s
+[CV] END colsample_bytree=0.7, gamma=0, learning_rate=0.05, max_depth=8, min_child_weight=1, n_estimators=300, objective=reg:squarederror, reg_alpha=5, reg_lambda=10, subsample=0.8; total time=   0.6s
+[CV] END colsample_bytree=0.7, gamma=0, learning_rate=0.05, max_depth=8, min_child_weight=1, n_estimators=300, objective=reg:squarederror, reg_alpha=5, reg_lambda=10, subsample=0.8; total time=   0.7s
+[CV] END colsample_bytree=0.7, gamma=5, learning_rate=0.1, max_depth=3, min_child_weight=1, n_estimators=100, objective=reg:squarederror, reg_alpha=0.1, reg_lambda=0.1, subsample=0.8; total time=   0.0s
+[CV] END colsample_bytree=0.7, gamma=5, learning_rate=0.1, max_depth=3, min_child_weight=1, n_estimators=100, objective=reg:squarederror, reg_alpha=0.1, reg_lambda=0.1, subsample=0.8; total time=   0.0s
+[CV] END colsample_bytree=0.8, gamma=5, learning_rate=0.01, max_depth=8, min_child_weight=3, n_estimators=500, objective=reg:pseudohubererror, reg_alpha=0, reg_lambda=0.1, subsample=1.0; total time=   0.3s
+[CV] END colsample_bytree=0.8, gamma=5, learning_rate=0.01, max_depth=8, min_child_weight=3, n_estimators=500, objective=reg:pseudohubererror, reg_alpha=0, reg_lambda=0.1, subsample=1.0; total time=   0.5s
+[CV] END colsample_bytree=1.0, gamma=0.1, learning_rate=0.05, max_depth=8, min_child_weight=5, n_estimators=200, objective=reg:absoluteerror, reg_alpha=1, reg_lambda=10, subsample=0.9; total time=   0.4s
+[CV] END colsample_bytree=1.0, gamma=0.1, learning_rate=0.05, max_depth=8, min_child_weight=5, n_estimators=200, objective=reg:absoluteerror, reg_alpha=1, reg_lambda=10, subsample=0.9; total time=   0.4s
+[CV] END colsample_bytree=1.0, gamma=0, learning_rate=0.05, max_depth=8, min_child_weight=10, n_estimators=300, objective=reg:absoluteerror, reg_alpha=0, reg_lambda=0.1, subsample=0.8; total time=   0.4s
+[CV] END colsample_bytree=1.0, gamma=0, learning_rate=0.05, max_depth=8, min_child_weight=10, n_estimators=300, objective=reg:absoluteerror, reg_alpha=0, reg_lambda=0.1, subsample=0.8; total time=   0.4s
+[CV] END colsample_bytree=1.0, gamma=5, learning_rate=0.03, max_depth=4, min_child_weight=5, n_estimators=300, objective=reg:squarederror, reg_alpha=0, reg_lambda=10, subsample=0.8; total time=   0.1s
+[CV] END colsample_bytree=1.0, gamma=5, learning_rate=0.03, max_depth=4, min_child_weight=5, n_estimators=300, objective=reg:squarederror, reg_alpha=0, reg_lambda=10, subsample=0.8; total time=   0.2s
+[CV] END colsample_bytree=0.8, gamma=0.1, learning_rate=0.03, max_depth=3, min_child_weight=1, n_estimators=200, objective=reg:squarederror, reg_alpha=0, reg_lambda=1, subsample=1.0; total time=   0.1s
+[CV] END colsample_bytree=0.8, gamma=0.1, learning_rate=0.03, max_depth=3, min_child_weight=1, n_estimators=200, objective=reg:squarederror, reg_alpha=0, reg_lambda=1, subsample=1.0; total time=   0.1s
+[CV] END colsample_bytree=0.8, gamma=0.1, learning_rate=0.03, max_depth=3, min_child_weight=1, n_estimators=200, objective=reg:squarederror, reg_alpha=0, reg_lambda=1, subsample=1.0; total time=   0.1s
+[CV] END colsample_bytree=0.8, gamma=0.1, learning_rate=0.03, max_depth=3, min_child_weight=1, n_estimators=200, objective=reg:squarederror, reg_alpha=0, reg_lambda=1, subsample=1.0; total time=   0.1s
+[CV] END colsample_bytree=1.0, gamma=1, learning_rate=0.1, max_depth=6, min_child_weight=3, n_estimators=200, objective=reg:squarederror, reg_alpha=5, reg_lambda=10, subsample=0.8; total time=   0.2s
+[CV] END colsample_bytree=1.0, gamma=1, learning_rate=0.1, max_depth=6, min_child_weight=3, n_estimators=200, objective=reg:squarederror, reg_alpha=5, reg_lambda=10, subsample=0.8; total time=   0.2s
+[CV] END colsample_bytree=0.8, gamma=0.1, learning_rate=0.1, max_depth=2, min_child_weight=10, n_estimators=500, objective=reg:pseudohubererror, reg_alpha=5, reg_lambda=1, subsample=0.7; total time=   0.1s
+[CV] END colsample_bytree=0.8, gamma=0.1, learning_rate=0.1, max_depth=2, min_child_weight=10, n_estimators=500, objective=reg:pseudohubererror, reg_alpha=5, reg_lambda=1, subsample=0.7; total time=   0.1s
+[CV] END colsample_bytree=0.8, gamma=0.1, learning_rate=0.05, max_depth=4, min_child_weight=5, n_estimators=100, objective=reg:absoluteerror, reg_alpha=1, reg_lambda=10, subsample=0.7; total time=   0.1s
+[CV] END colsample_bytree=0.8, gamma=0.1, learning_rate=0.05, max_depth=4, min_child_weight=5, n_estimators=100, objective=reg:absoluteerror, reg_alpha=1, reg_lambda=10, subsample=0.7; total time=   0.1s
+[CV] END colsample_bytree=1.0, gamma=1, learning_rate=0.05, max_depth=4, min_child_weight=10, n_estimators=300, objective=reg:absoluteerror, reg_alpha=1, reg_lambda=10, subsample=0.7; total time=   0.1s
+[CV] END colsample_bytree=1.0, gamma=1, learning_rate=0.05, max_depth=4, min_child_weight=10, n_estimators=300, objective=reg:absoluteerror, reg_alpha=1, reg_lambda=10, subsample=0.7; total time=   0.1s
+[CV] END colsample_bytree=0.7, gamma=0.1, learning_rate=0.03, max_depth=6, min_child_weight=10, n_estimators=200, objective=reg:pseudohubererror, reg_alpha=0, reg_lambda=1, subsample=1.0; total time=   0.0s
+[CV] END colsample_bytree=0.7, gamma=0.1, learning_rate=0.03, max_depth=6, min_child_weight=10, n_estimators=200, objective=reg:pseudohubererror, reg_alpha=0, reg_lambda=1, subsample=1.0; total time=   0.0s
+[CV] END colsample_bytree=0.7, gamma=0.1, learning_rate=0.03, max_depth=8, min_child_weight=5, n_estimators=100, objective=reg:squarederror, reg_alpha=0, reg_lambda=5, subsample=0.9; total time=   0.2s
+[CV] END colsample_bytree=0.8, gamma=0.1, learning_rate=0.01, max_depth=8, min_child_weight=1, n_estimators=500, objective=reg:pseudohubererror, reg_alpha=5, reg_lambda=0.1, subsample=0.9; total time=   0.2s
+[CV] END colsample_bytree=0.7, gamma=0.1, learning_rate=0.03, max_depth=8, min_child_weight=1, n_estimators=200, objective=reg:squarederror, reg_alpha=1, reg_lambda=5, subsample=0.8; total time=   0.4s
+[CV] END colsample_bytree=0.7, gamma=0.1, learning_rate=0.03, max_depth=8, min_child_weight=1, n_estimators=200, objective=reg:squarederror, reg_alpha=1, reg_lambda=5, subsample=0.8; total time=   0.4s
+[CV] END colsample_bytree=0.7, gamma=5, learning_rate=0.1, max_depth=3, min_child_weight=3, n_estimators=800, objective=reg:absoluteerror, reg_alpha=1, reg_lambda=10, subsample=1.0; total time=   0.4s
+[CV] END colsample_bytree=1.0, gamma=0.1, learning_rate=0.1, max_depth=5, min_child_weight=10, n_estimators=800, objective=reg:pseudohubererror, reg_alpha=5, reg_lambda=1, subsample=0.9; total time=   0.3s
+[CV] END colsample_bytree=0.8, gamma=0.1, learning_rate=0.03, max_depth=3, min_child_weight=10, n_estimators=500, objective=reg:absoluteerror, reg_alpha=1, reg_lambda=0.1, subsample=0.9; total time=   0.2s
+[CV] END colsample_bytree=0.8, gamma=0.1, learning_rate=0.03, max_depth=3, min_child_weight=10, n_estimators=500, objective=reg:absoluteerror, reg_alpha=1, reg_lambda=0.1, subsample=0.9; total time=   0.2s
+[CV] END colsample_bytree=0.8, gamma=5, learning_rate=0.03, max_depth=2, min_child_weight=10, n_estimators=100, objective=reg:absoluteerror, reg_alpha=5, reg_lambda=0.1, subsample=1.0; total time=   0.0s
+[CV] END colsample_bytree=0.7, gamma=0.1, learning_rate=0.03, max_depth=6, min_child_weight=3, n_estimators=300, objective=reg:squarederror, reg_alpha=0.1, reg_lambda=10, subsample=0.7; total time=   0.2s
+[CV] END colsample_bytree=0.7, gamma=1, learning_rate=0.1, max_depth=3, min_child_weight=3, n_estimators=800, objective=reg:pseudohubererror, reg_alpha=1, reg_lambda=5, subsample=0.9; total time=   0.3s
+[CV] END colsample_bytree=0.7, gamma=0.1, learning_rate=0.01, max_depth=6, min_child_weight=5, n_estimators=800, objective=reg:squarederror, reg_alpha=5, reg_lambda=10, subsample=0.7; total time=   0.7s
+[CV] END colsample_bytree=0.7, gamma=0.1, learning_rate=0.01, max_depth=6, min_child_weight=5, n_estimators=800, objective=reg:squarederror, reg_alpha=5, reg_lambda=10, subsample=0.7; total time=   0.7s
+[CV] END colsample_bytree=0.7, gamma=5, learning_rate=0.01, max_depth=2, min_child_weight=3, n_estimators=500, objective=reg:pseudohubererror, reg_alpha=0.1, reg_lambda=1, subsample=1.0; total time=   0.1s
+[CV] END colsample_bytree=0.7, gamma=5, learning_rate=0.01, max_depth=2, min_child_weight=3, n_estimators=500, objective=reg:pseudohubererror, reg_alpha=0.1, reg_lambda=1, subsample=1.0; total time=   0.1s
+[CV] END colsample_bytree=1.0, gamma=0, learning_rate=0.05, max_depth=3, min_child_weight=1, n_estimators=100, objective=reg:squarederror, reg_alpha=0, reg_lambda=0.1, subsample=0.8; total time=   0.1s
+[CV] END colsample_bytree=0.7, gamma=5, learning_rate=0.05, max_depth=3, min_child_weight=1, n_estimators=500, objective=reg:absoluteerror, reg_alpha=0.1, reg_lambda=10, subsample=0.8; total time=   0.1s
+[CV] END colsample_bytree=1.0, gamma=0, learning_rate=0.05, max_depth=4, min_child_weight=1, n_estimators=500, objective=reg:absoluteerror, reg_alpha=5, reg_lambda=10, subsample=1.0; total time=   0.3s
+[CV] END colsample_bytree=0.7, gamma=0.1, learning_rate=0.01, max_depth=4, min_child_weight=10, n_estimators=500, objective=reg:squarederror, reg_alpha=5, reg_lambda=5, subsample=1.0; total time=   0.1s
+[CV] END colsample_bytree=1.0, gamma=1, learning_rate=0.05, max_depth=8, min_child_weight=5, n_estimators=500, objective=reg:squarederror, reg_alpha=5, reg_lambda=10, subsample=0.7; total time=   1.1s
+[CV] END colsample_bytree=1.0, gamma=1, learning_rate=0.05, max_depth=8, min_child_weight=5, n_estimators=500, objective=reg:squarederror, reg_alpha=5, reg_lambda=10, subsample=0.7; total time=   1.1s
+[CV] END colsample_bytree=0.8, gamma=5, learning_rate=0.01, max_depth=2, min_child_weight=10, n_estimators=300, objective=reg:pseudohubererror, reg_alpha=0.1, reg_lambda=0.1, subsample=1.0; total time=   0.1s
+[CV] END colsample_bytree=0.8, gamma=5, learning_rate=0.01, max_depth=2, min_child_weight=10, n_estimators=300, objective=reg:pseudohubererror, reg_alpha=0.1, reg_lambda=0.1, subsample=1.0; total time=   0.1s
+[CV] END colsample_bytree=0.8, gamma=5, learning_rate=0.03, max_depth=4, min_child_weight=10, n_estimators=100, objective=reg:absoluteerror, reg_alpha=5, reg_lambda=5, subsample=1.0; total time=   0.1s
+[CV] END colsample_bytree=0.8, gamma=5, learning_rate=0.03, max_depth=4, min_child_weight=10, n_estimators=100, objective=reg:absoluteerror, reg_alpha=5, reg_lambda=5, subsample=1.0; total time=   0.1s
+[CV] END colsample_bytree=1.0, gamma=0, learning_rate=0.05, max_depth=8, min_child_weight=3, n_estimators=100, objective=reg:absoluteerror, reg_alpha=0, reg_lambda=1, subsample=1.0; total time=   0.2s
+[CV] END colsample_bytree=1.0, gamma=0, learning_rate=0.05, max_depth=8, min_child_weight=3, n_estimators=100, objective=reg:absoluteerror, reg_alpha=0, reg_lambda=1, subsample=1.0; total time=   0.3s
+[CV] END colsample_bytree=1.0, gamma=0.1, learning_rate=0.05, max_depth=8, min_child_weight=5, n_estimators=200, objective=reg:absoluteerror, reg_alpha=1, reg_lambda=10, subsample=0.9; total time=   0.4s
+[CV] END colsample_bytree=0.7, gamma=0.1, learning_rate=0.01, max_depth=5, min_child_weight=5, n_estimators=800, objective=reg:pseudohubererror, reg_alpha=1, reg_lambda=0.1, subsample=0.9; total time=   0.2s
+[CV] END colsample_bytree=1.0, gamma=0, learning_rate=0.05, max_depth=8, min_child_weight=10, n_estimators=300, objective=reg:absoluteerror, reg_alpha=0, reg_lambda=0.1, subsample=0.8; total time=   0.5s
+[CV] END colsample_bytree=0.7, gamma=1, learning_rate=0.03, max_depth=2, min_child_weight=1, n_estimators=800, objective=reg:pseudohubererror, reg_alpha=0, reg_lambda=1, subsample=0.8; total time=   0.1s
+[CV] END colsample_bytree=0.7, gamma=1, learning_rate=0.01, max_depth=5, min_child_weight=1, n_estimators=800, objective=reg:pseudohubererror, reg_alpha=1, reg_lambda=0.1, subsample=0.8; total time=   0.5s
+[CV] END colsample_bytree=0.7, gamma=1, learning_rate=0.01, max_depth=5, min_child_weight=1, n_estimators=800, objective=reg:pseudohubererror, reg_alpha=1, reg_lambda=0.1, subsample=0.8; total time=   0.5s
+[CV] END colsample_bytree=0.8, gamma=1, learning_rate=0.05, max_depth=4, min_child_weight=1, n_estimators=200, objective=reg:pseudohubererror, reg_alpha=1, reg_lambda=10, subsample=0.9; total time=   0.0s
+[CV] END colsample_bytree=0.8, gamma=1, learning_rate=0.05, max_depth=4, min_child_weight=1, n_estimators=200, objective=reg:pseudohubererror, reg_alpha=1, reg_lambda=10, subsample=0.9; total time=   0.1s
+[CV] END colsample_bytree=1.0, gamma=0, learning_rate=0.01, max_depth=3, min_child_weight=3, n_estimators=100, objective=reg:squarederror, reg_alpha=5, reg_lambda=5, subsample=1.0; total time=   0.0s
+[CV] END colsample_bytree=1.0, gamma=0, learning_rate=0.01, max_depth=3, min_child_weight=3, n_estimators=100, objective=reg:squarederror, reg_alpha=5, reg_lambda=5, subsample=1.0; total time=   0.0s
+[CV] END colsample_bytree=1.0, gamma=1, learning_rate=0.01, max_depth=3, min_child_weight=1, n_estimators=500, objective=reg:squarederror, reg_alpha=5, reg_lambda=5, subsample=1.0; total time=   0.2s
+[CV] END colsample_bytree=1.0, gamma=1, learning_rate=0.01, max_depth=3, min_child_weight=1, n_estimators=500, objective=reg:squarederror, reg_alpha=5, reg_lambda=5, subsample=1.0; total time=   0.2s
+[CV] END colsample_bytree=0.7, gamma=1, learning_rate=0.1, max_depth=4, min_child_weight=10, n_estimators=500, objective=reg:pseudohubererror, reg_alpha=0, reg_lambda=5, subsample=0.7; total time=   0.1s
+[CV] END colsample_bytree=0.7, gamma=1, learning_rate=0.1, max_depth=4, min_child_weight=10, n_estimators=500, objective=reg:pseudohubererror, reg_alpha=0, reg_lambda=5, subsample=0.7; total time=   0.1s
+[CV] END colsample_bytree=0.7, gamma=0.1, learning_rate=0.03, max_depth=8, min_child_weight=5, n_estimators=100, objective=reg:squarederror, reg_alpha=0, reg_lambda=5, subsample=0.9; total time=   0.2s
+[CV] END colsample_bytree=0.7, gamma=0.1, learning_rate=0.03, max_depth=8, min_child_weight=5, n_estimators=100, objective=reg:squarederror, reg_alpha=0, reg_lambda=5, subsample=0.9; total time=   0.2s
+[CV] END colsample_bytree=0.7, gamma=0, learning_rate=0.01, max_depth=5, min_child_weight=3, n_estimators=100, objective=reg:pseudohubererror, reg_alpha=5, reg_lambda=5, subsample=0.9; total time=   0.0s
+[CV] END colsample_bytree=0.7, gamma=0.1, learning_rate=0.03, max_depth=8, min_child_weight=1, n_estimators=200, objective=reg:squarederror, reg_alpha=1, reg_lambda=5, subsample=0.8; total time=   0.3s
+[CV] END colsample_bytree=1.0, gamma=5, learning_rate=0.05, max_depth=8, min_child_weight=1, n_estimators=100, objective=reg:absoluteerror, reg_alpha=0, reg_lambda=1, subsample=1.0; total time=   0.4s
+[CV] END colsample_bytree=1.0, gamma=5, learning_rate=0.05, max_depth=8, min_child_weight=1, n_estimators=100, objective=reg:absoluteerror, reg_alpha=0, reg_lambda=1, subsample=1.0; total time=   0.4s
+[CV] END colsample_bytree=0.8, gamma=0.1, learning_rate=0.03, max_depth=3, min_child_weight=3, n_estimators=800, objective=reg:pseudohubererror, reg_alpha=1, reg_lambda=0.1, subsample=0.9; total time=   0.3s
+[CV] END colsample_bytree=0.8, gamma=0.1, learning_rate=0.03, max_depth=3, min_child_weight=3, n_estimators=800, objective=reg:pseudohubererror, reg_alpha=1, reg_lambda=0.1, subsample=0.9; total time=   0.2s
+[CV] END colsample_bytree=0.7, gamma=0.1, learning_rate=0.05, max_depth=2, min_child_weight=1, n_estimators=800, objective=reg:pseudohubererror, reg_alpha=1, reg_lambda=10, subsample=0.9; total time=   0.1s
+[CV] END colsample_bytree=0.7, gamma=0.1, learning_rate=0.05, max_depth=2, min_child_weight=1, n_estimators=800, objective=reg:pseudohubererror, reg_alpha=1, reg_lambda=10, subsample=0.9; total time=   0.1s

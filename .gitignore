@@ -1,0 +1,38 @@
+# Local environments, caches, secrets, and development backups.
+# Trained models, results, and the dataset stay in version control.
+
+# Python virtual environments
+.venv/
+venv/
+env/
+
+# Python cache
+__pycache__/
+*.py[cod]
+
+# Testing and coverage cache
+.pytest_cache/
+.coverage
+.coverage.*
+
+# macOS
+.DS_Store
+.AppleDouble
+
+# IDE settings
+.idea/
+.vscode/
+
+# Local configuration and secrets
+.env
+.streamlit/secrets.toml
+
+# Development backups
+backups/
+
+# Temporary files
+*.tmp
+*.bak
+
+# Distribution archives
+*.zip
